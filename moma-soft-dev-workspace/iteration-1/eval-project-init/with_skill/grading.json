@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "生成了 docs/01-项目概要.md 文件",
+      "passed": true,
+      "evidence": "File exists at outputs/docs/01-项目概要.md"
+    },
+    {
+      "text": "生成了 docs/02-产品需求文档.md 文件",
+      "passed": true,
+      "evidence": "File exists at outputs/docs/02-产品需求文档.md"
+    },
+    {
+      "text": "生成了至少7份文档（01到07）",
+      "passed": true,
+      "evidence": "Found 7 docs: 01-项目概要, 02-产品需求文档, 03-技术架构文档, 04-数据模型文档, 05-API接口文档, 06-开发规约, 07-测试策略"
+    },
+    {
+      "text": "文档中包含用户提到的技术栈（React、Spring Boot）",
+      "passed": true,
+      "evidence": "grep found React/Spring Boot mentions in 01-项目概要(2), 03-技术架构(17), 06-开发规约(4), 07-测试策略(2)"
+    },
+    {
+      "text": "输出中包含提示用户审核和发送 [开始编码] 的建议",
+      "passed": true,
+      "evidence": "summary.md line 66: '发送 `[开始编码]` 进入阶段4'"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "All assertions pass with strong evidence. The skill produced a complete structured document set."
+  }
+}

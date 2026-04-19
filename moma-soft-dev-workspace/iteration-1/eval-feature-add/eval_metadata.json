@@ -1,0 +1,10 @@
+{
+  "eval_id": 1,
+  "eval_name": "feature-add",
+  "prompt": "[功能新增] 在现有的交易平台基础上增加一个拼团购买功能，允许多个用户一起拼团购买同一商品以获得折扣价",
+  "assertions": [
+    {"id": "a1-1", "text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求", "type": "content_check"},
+    {"id": "a1-2", "text": "在 docs/08-变更日志.md 中记录了本次新增", "type": "content_check"},
+    {"id": "a1-3", "text": "提交信息以 feat: 开头", "type": "content_check"}
+  ]
+}

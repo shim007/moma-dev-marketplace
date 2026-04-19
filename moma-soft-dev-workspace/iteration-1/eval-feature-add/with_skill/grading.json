@@ -1,0 +1,29 @@
+{
+  "expectations": [
+    {
+      "text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求",
+      "passed": true,
+      "evidence": "summary.md details extensive updates to 02-产品需求文档: new §2.7 拼团购买 module with 4 user stories, business rules BR-04~BR-08, GroupBuy/GroupBuyMember entities"
+    },
+    {
+      "text": "在 docs/08-变更日志.md 中记录了本次新增",
+      "passed": true,
+      "evidence": "docs/08-变更日志.md created with CR-001 recording the 拼团购买 feature addition"
+    },
+    {
+      "text": "提交信息以 feat: 开头",
+      "passed": true,
+      "evidence": "summary.md shows commit message: 'feat: 新增拼团购买功能模块'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "All assertions pass. The skill correctly followed the [功能新增] workflow."
+  }
+}

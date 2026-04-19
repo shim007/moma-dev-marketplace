@@ -1,0 +1,29 @@
+{
+  "expectations": [
+    {
+      "text": "输出了问题原因分析",
+      "passed": true,
+      "evidence": "summary.md provides detailed root cause: 'OrderService.submitOrder() 直接对 request.getDeliveryAddress() 调用 .trim()，未做空值校验' with full impact chain"
+    },
+    {
+      "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+      "passed": true,
+      "evidence": "docs/09-BUG记录.md exists with BUG-001 following the 6.2 template format including: 级别(严重), 发现场景, 复现步骤(3 steps), 预期结果, 实际结果, 修复方案, 状态(已修复)"
+    },
+    {
+      "text": "提交信息以 bug: 开头",
+      "passed": true,
+      "evidence": "summary.md line 63: 'bug: 修复提交订单时收货地址为空导致 NullPointerException 的问题'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "All assertions pass. The skill correctly followed [修复异常] workflow with proper BUG record format."
+  }
+}

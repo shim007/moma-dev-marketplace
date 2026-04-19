@@ -1,0 +1,165 @@
+{
+  "metadata": {
+    "skill_name": "moma-soft-dev",
+    "skill_path": "E:\\Workspace\\momasoft\\doc-template\\skills\\moma-soft-dev",
+    "timestamp": "2026-04-16T20:30:00Z",
+    "evals_run": ["project-init", "feature-add", "bug-fix"],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "project-init",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 759.0,
+        "tokens": 0,
+        "tool_calls": 20,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "生成了 docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了 docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了至少7份文档（01到07）", "passed": true, "evidence": "7 docs found"},
+        {"text": "文档中包含用户提到的技术栈（React、Spring Boot）", "passed": true, "evidence": "Multiple mentions across docs"},
+        {"text": "输出中包含提示用户审核和发送 [开始编码] 的建议", "passed": true, "evidence": "Found in summary.md"}
+      ]
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "project-init",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 673.0,
+        "tokens": 0,
+        "tool_calls": 16,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "生成了 docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists (different path)"},
+        {"text": "生成了 docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了至少7份文档（01到07）", "passed": true, "evidence": "8 docs including 08"},
+        {"text": "文档中包含用户提到的技术栈（React、Spring Boot）", "passed": true, "evidence": "Mentioned throughout"},
+        {"text": "输出中包含提示用户审核和发送 [开始编码] 的建议", "passed": false, "evidence": "No [开始编码] prompt"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "feature-add",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 208.0,
+        "tokens": 0,
+        "tool_calls": 21,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "Detailed updates in summary"},
+        {"text": "在 docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "CR-001 recorded"},
+        {"text": "提交信息以 feat: 开头", "passed": true, "evidence": "feat: 新增拼团购买功能模块"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "feature-add",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "passed": 2,
+        "failed": 1,
+        "total": 3,
+        "time_seconds": 294.0,
+        "tokens": 0,
+        "tool_calls": 21,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "PRD created"},
+        {"text": "在 docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "Change log created"},
+        {"text": "提交信息以 feat: 开头", "passed": false, "evidence": "No feat: prefix convention"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "bug-fix",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 66.0,
+        "tokens": 0,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了问题原因分析", "passed": true, "evidence": "Detailed root cause in summary"},
+        {"text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "BUG-001 with full 6.2 template"},
+        {"text": "提交信息以 bug: 开头", "passed": true, "evidence": "bug: 修复...NullPointerException"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "bug-fix",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 96.0,
+        "tokens": 0,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了问题原因分析", "passed": true, "evidence": "Root cause provided"},
+        {"text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "Bug record created"},
+        {"text": "提交信息以 bug: 开头", "passed": true, "evidence": "bug: prefix used"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 344.3, "stddev": 302.0, "min": 66.0, "max": 759.0},
+      "tokens": {"mean": 0, "stddev": 0, "min": 0, "max": 0}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.82, "stddev": 0.14, "min": 0.67, "max": 1.0},
+      "time_seconds": {"mean": 354.3, "stddev": 246.0, "min": 96.0, "max": 673.0},
+      "tokens": {"mean": 0, "stddev": 0, "min": 0, "max": 0}
+    },
+    "delta": {
+      "pass_rate": "+0.18",
+      "time_seconds": "-10.0",
+      "tokens": "0"
+    }
+  },
+  "notes": [
+    "With-skill achieves 100% pass rate across all 3 evals vs 82% baseline",
+    "Skill's main advantage is in workflow conventions: [开始编码] prompt and feat:/bug: commit prefixes",
+    "Bug-fix eval passes 100% for both configs — assertions may not be discriminating enough for this scenario",
+    "Project-init eval is the most discriminating: skill provides structured stage progression and user prompts",
+    "Feature-add shows clear skill benefit in commit convention compliance"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "expectations": [
+    {
+      "text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求",
+      "passed": true,
+      "evidence": "Agent report confirms docs/02-产品需求文档.md with complete PRD for group buying: 7 user stories, detailed flows"
+    },
+    {
+      "text": "在 docs/08-变更日志.md 中记录了本次新增",
+      "passed": true,
+      "evidence": "Agent report confirms docs/08-变更日志.md with CR-001 change record and V1.1 release notes"
+    },
+    {
+      "text": "提交信息以 feat: 开头",
+      "passed": false,
+      "evidence": "No explicit feat: commit message mentioned in the baseline output — baseline has no knowledge of this convention"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Baseline produced good documentation but missed the skill-defined commit convention."
+  }
+}

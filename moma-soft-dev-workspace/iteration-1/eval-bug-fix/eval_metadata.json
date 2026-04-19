@@ -1,0 +1,22 @@
+{
+  "eval_id": 2,
+  "eval_name": "bug-fix",
+  "prompt": "[修复异常] 用户反馈在提交订单的时候页面一直转圈，控制台报 500 错误，看了下后端日志是 NullPointerException，好像跟地址字段有关",
+  "assertions": [
+    {
+      "id": "a2-1",
+      "text": "输出了问题原因分析",
+      "type": "content_check"
+    },
+    {
+      "id": "a2-2",
+      "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+      "type": "content_check"
+    },
+    {
+      "id": "a2-3",
+      "text": "提交信息以 bug: 开头",
+      "type": "content_check"
+    }
+  ]
+}

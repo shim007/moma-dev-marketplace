@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "生成了 docs/01-项目概要.md 文件",
+      "passed": true,
+      "evidence": "File exists at outputs/01-项目概要.md (note: not in docs/ subfolder)"
+    },
+    {
+      "text": "生成了 docs/02-产品需求文档.md 文件",
+      "passed": true,
+      "evidence": "File exists at outputs/02-产品需求文档.md (not in docs/ subfolder)"
+    },
+    {
+      "text": "生成了至少7份文档（01到07）",
+      "passed": true,
+      "evidence": "Found 8 docs: 01 through 08 (without_skill also generated 08-变更日志)"
+    },
+    {
+      "text": "文档中包含用户提到的技术栈（React、Spring Boot）",
+      "passed": true,
+      "evidence": "Agent report mentions React + Spring Boot architecture throughout"
+    },
+    {
+      "text": "输出中包含提示用户审核和发送 [开始编码] 的建议",
+      "passed": false,
+      "evidence": "No mention of [开始编码] in baseline output — baseline has no knowledge of this keyword"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "输出中包含提示用户审核和发送 [开始编码] 的建议",
+        "reason": "This assertion is skill-specific and will always fail for the baseline, making it a good discriminating assertion."
+      }
+    ],
+    "overall": "Baseline produced comprehensive docs but lacked the structured workflow prompts that the skill provides."
+  }
+}

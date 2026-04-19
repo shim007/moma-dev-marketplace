@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "project-init",
+  "prompt": "[项目启动] 我想做一个校园二手交易平台，支持学生发布闲置物品、在线聊天议价、校内自提，需要用户认证学生身份，技术栈倾向用 React + Spring Boot",
+  "assertions": [
+    {"id": "a0-1", "text": "生成了 docs/01-项目概要.md 文件", "type": "file_exists"},
+    {"id": "a0-2", "text": "生成了 docs/02-产品需求文档.md 文件", "type": "file_exists"},
+    {"id": "a0-3", "text": "生成了至少7份文档（01到07）", "type": "count_check"},
+    {"id": "a0-4", "text": "文档中包含用户提到的技术栈（React、Spring Boot）", "type": "content_check"},
+    {"id": "a0-5", "text": "输出中包含提示用户审核和发送 [开始编码] 的建议", "type": "content_check"}
+  ]
+}
