@@ -1,9 +1,6 @@
 ---
 name: moma-session-complete
-description: >
-  moma-soft-dev 子技能 —— 会话归档。当用户消息以 /moma-session-complete 开头时使用本技能，
-  将当前会话的全过程进行结构化总结，并保存为 markdown 文档归档到与项目过程文档同根目录的 session-records/ 子目录下
-  （优先 dev-docs/session-records/，其次 docs/session-records/）。本指令不修改业务代码与 01~07 文档。
+description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /moma-session-complete 开头时使用本技能， 将当前会话的全过程进行结构化总结，并保存为 markdown 文档归档到与项目过程文档同根目录的 session-records/ 子目录下 （优先 dev-docs/session-records/，其次 docs/session-records/）。本指令不修改业务代码与 01~07 文档。'
 ---
 
 # /moma-session-complete —— 会话归档

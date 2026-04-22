@@ -1,9 +1,6 @@
 ---
 name: moma-fix
-description: >
-  moma-soft-dev 子技能 —— 异常修复。当用户消息以 /moma-fix 开头时使用本技能，
-  分析并修复用户描述的代码异常，输出问题原因说明，按 07-测试策略.md 的缺陷记录模板将 bug
-  追加到 09-BUG记录.md，并以 bug: 前缀格式生成版本控制提交。
+description: 'moma-soft-dev 子技能 —— 异常修复。当用户消息以 /moma-fix 开头时使用本技能， 分析并修复用户描述的代码异常，输出问题原因说明，按 07-测试策略.md 的缺陷记录模板将 bug 追加到 09-BUG记录.md，并以 bug: 前缀格式生成版本控制提交。'
 ---
 
 # /moma-fix —— 异常修复
