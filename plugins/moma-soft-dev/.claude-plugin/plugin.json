@@ -11,15 +11,5 @@
     "documentation",
     "workflow"
   ],
-  "skills": [
-    "./skills/moma-soft-dev",
-    "./skills/moma-init",
-    "./skills/moma-sync",
-    "./skills/moma-coding",
-    "./skills/moma-modify",
-    "./skills/moma-optimize",
-    "./skills/moma-new",
-    "./skills/moma-fix",
-    "./skills/moma-session-complete"
-  ]
+  "skills": "./skills/"
 }
