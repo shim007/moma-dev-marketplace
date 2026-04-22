@@ -1,0 +1,25 @@
+{
+  "name": "moma-soft-dev",
+  "description": "AI 驱动的简化软件开发流程管控插件，提供 /moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-session-complete 等斜杠指令，通过标准化文档体系驱动软件项目的完整生命周期。",
+  "version": "1.0.0",
+  "author": {
+    "name": "MoMa Soft"
+  },
+  "keywords": [
+    "moma",
+    "software-development",
+    "documentation",
+    "workflow"
+  ],
+  "skills": [
+    "./skills/moma-soft-dev",
+    "./skills/moma-init",
+    "./skills/moma-sync",
+    "./skills/moma-coding",
+    "./skills/moma-modify",
+    "./skills/moma-optimize",
+    "./skills/moma-new",
+    "./skills/moma-fix",
+    "./skills/moma-session-complete"
+  ]
+}

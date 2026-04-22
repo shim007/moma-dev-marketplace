@@ -1,0 +1,14 @@
+{
+  "name": "moma-soft-dev-marketplace",
+  "owner": {
+    "name": "MoMa Soft"
+  },
+  "plugins": [
+    {
+      "name": "moma-soft-dev",
+      "source": "./plugins/moma-soft-dev",
+      "description": "AI 驱动的简化软件开发流程管控插件",
+      "version": "1.0.0"
+    }
+  ]
+}
