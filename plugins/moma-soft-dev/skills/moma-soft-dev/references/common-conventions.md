@@ -10,7 +10,9 @@
 - **创建/更新文档：** 优先写入 `dev-docs/`（不存在则创建该目录）；只有当当前项目仅存在 `docs/` 而无 `dev-docs/` 时，才继续使用 `docs/`。
 - **会话归档目录：** `<docs-root>/session-records/`，与上面的 `<docs-root>` 保持一致。
 
-模板文件统一来自仓库的 `simple-software/` 目录。
+模板文件统一来自插件内置模板目录 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
+
+> `${CLAUDE_PLUGIN_ROOT}` 由 Claude Code 自动解析为本插件的安装根目录；若在某处未被展开，可在插件安装目录（通常为 `~/.claude/plugins/` 下的 `moma-soft-dev`）内找到对应文件。
 
 > 各 `moma-*` skill 中出现的 `docs/` 路径均遵循上述查找/创建规则，实际优先使用 `dev-docs/`。
 

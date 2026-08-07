@@ -4,7 +4,7 @@
     {
       "id": 0,
       "prompt": "/moma-init 我想做一个校园二手交易平台，支持学生发布闲置物品、在线聊天议价、校内自提，需要用户认证学生身份，技术栈倾向用 React + Spring Boot",
-      "expected_output": "生成 docs/ 目录下的 01~07 共7份项目文档，每份文档基于 simple-software/ 模板填充，包含完整的需求拆分、技术架构、数据模型、API设计、开发规约和测试策略。最后提示用户审核并建议发送 /moma-coding。",
+      "expected_output": "生成 docs/ 目录下的 01~07 共7份项目文档，每份文档基于插件内置模板（templates/simple-software/）填充，包含完整的需求拆分、技术架构、数据模型、API设计、开发规约和测试策略。最后提示用户审核并建议发送 /moma-coding。",
       "files": [],
       "assertions": [
         {

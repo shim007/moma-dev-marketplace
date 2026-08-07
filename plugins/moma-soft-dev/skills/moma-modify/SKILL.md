@@ -7,7 +7,7 @@ description: 'moma-soft-dev 子技能 —— 需求调整。当用户消息以 /
 
 调整已有需求，同步更新文档和代码。
 
-> 共享约定见 `../moma-soft-dev/references/common-conventions.md`，编码通用约束必须严格遵守。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，编码通用约束必须严格遵守。
 
 ## 上下文范围
 

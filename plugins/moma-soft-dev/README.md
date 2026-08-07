@@ -1,10 +1,12 @@
 # moma-soft-dev 插件
 
-AI 驱动的简化软件开发流程管控插件，通过标准化的文档体系驱动软件项目的完整生命周期。
+AI 驱动的简化软件开发流程管控插件，通过标准化的文档体系驱动软件项目的完整生命周期。核心理念：
 
-## 提供的斜杠指令
+> **用户输入需求 → AI 按阶段生成约束文档 → 文档约束 AI 编码**
 
-安装后，在 Copilot CLI 输入栏键入 `/m` 即可看到自动补全：
+## 提供的技能（斜杠指令）
+
+安装后，在 Claude Code 输入栏键入 `/moma-` 即可看到自动补全：
 
 | 指令 | 用途 |
 |------|------|
@@ -17,101 +19,84 @@ AI 驱动的简化软件开发流程管控插件，通过标准化的文档体�
 | `/moma-fix` | 定位并修复代码异常 |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
 
-## 快速安装（推荐）
+另有一个总览技能 `moma-soft-dev`，用于介绍整体流程与共享约定，不执行具体工作。
 
-### 方式一：通过 Copilot CLI 的 `/plugin` 命令安装本地插件
+## 安装
 
-1. 在 Copilot CLI 中执行：
-   ```
-   /plugin marketplace add E:\Workspace\momasoft\doc-template
-   ```
-   （路径请改成你本机的仓库根目录绝对路径；macOS/Linux 同理。）
+### 方式一：从 marketplace 安装（推荐）
 
-2. 然后安装本插件：
-   ```
-   /plugin install moma-soft-dev
-   ```
+在 Claude Code 中依次执行：
 
-3. 重新加载：
-   ```
-   /reload-plugins
-   ```
-   或重启 Copilot CLI。
-
-4. 在输入栏键入 `/m`，即可看到 `/moma-init`、`/moma-coding` 等所有 `/moma-*` 指令的自动补全。
-
-### 方式二：复制安装（无需 marketplace）
-
-#### Windows (PowerShell)
-
-```powershell
-$src = "E:\Workspace\momasoft\doc-template\plugins\moma-soft-dev"
-$dst = "$env:USERPROFILE\.copilot\installed-plugins\local\moma-soft-dev"
-New-Item -ItemType Directory -Force -Path (Split-Path $dst) | Out-Null
-if (Test-Path $dst) { Remove-Item -Recurse -Force $dst }
-Copy-Item -Recurse -Force $src $dst
+```
+/plugin marketplace add shim007/moma-dev-marketplace
+/plugin install moma-soft-dev@moma-dev-marketplace
 ```
 
-#### macOS / Linux (bash)
+然后重启 Claude Code（或开启新会话）。在输入栏键入 `/moma-`，即可看到全部指令的自动补全。
 
-```bash
-SRC="/path/to/doc-template/plugins/moma-soft-dev"
-DST="$HOME/.copilot/installed-plugins/local/moma-soft-dev"
-mkdir -p "$(dirname "$DST")"
-rm -rf "$DST"
-cp -R "$SRC" "$DST"
+### 方式二：本地安装（开发调试用）
+
+克隆本仓库后，将 marketplace 指向本地目录：
+
+```
+/plugin marketplace add /绝对路径/到/moma-dev-marketplace
+/plugin install moma-soft-dev@moma-dev-marketplace
 ```
 
-完成后在 Copilot CLI 中执行 `/reload-plugins`（或重启 CLI）即可生效。
+Windows 路径示例：`/plugin marketplace add C:\workspace\MomaLib\moma-dev-marketplace`。
 
-### 方式三：直接安装为用户级 skills（最简单，但失去插件命名空间）
+## 典型工作流
 
-如果只想快速试用，把每个子 skill 文件夹直接拷贝到 `~/.copilot/skills/` 即可：
-
-#### Windows (PowerShell)
-
-```powershell
-$src = "E:\Workspace\momasoft\doc-template\plugins\moma-soft-dev\skills"
-$dst = "$env:USERPROFILE\.copilot\skills"
-New-Item -ItemType Directory -Force -Path $dst | Out-Null
-Copy-Item -Recurse -Force "$src\*" $dst
 ```
-
-#### macOS / Linux (bash)
-
-```bash
-SRC="/path/to/doc-template/plugins/moma-soft-dev/skills"
-DST="$HOME/.copilot/skills"
-mkdir -p "$DST"
-cp -R "$SRC"/. "$DST/"
+新项目                        已有代码的项目
+   │                              │
+/moma-init（生成全套文档）    /moma-sync（反向补全文档）
+   │                              │
+   └──────────┬───────────────────┘
+              ▼
+        用户审核文档
+              ▼
+        /moma-coding（受文档约束编码）
+              ▼
+  ┌───────────┼────────────────────────┐
+/moma-modify  /moma-optimize  /moma-new  /moma-fix
+（需求调整）   （细节优化）    （功能新增）（异常修复）
+              ▼
+      /moma-session-complete（会话归档）
 ```
 
 ## 验证安装
 
-在 Copilot CLI 中：
-
-1. 执行 `/env`，查看 "Skills" 部分应能列出 `moma-init`、`moma-sync`、`moma-coding`、`moma-modify`、`moma-optimize`、`moma-new`、`moma-fix`、`moma-session-complete`、`moma-soft-dev` 共 9 个。
-2. 在输入栏键入 `/m`，应能看到上述所有 `/moma-*` 指令出现在自动补全列表中。
+1. 执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用。
+2. 在输入栏键入 `/moma-`，应看到上述 8 个工作指令的自动补全。
+3. 技能在系统中以 `moma-soft-dev:<技能名>` 形式注册（命名空间前缀即插件名）。
 
 ## 升级 / 卸载
 
-- **升级：** 重新执行对应安装方式的拷贝命令；marketplace 安装方式可在 CLI 中执行 `/plugin update moma-soft-dev`。
-- **卸载：**
-  - 方式一（marketplace）：`/plugin uninstall moma-soft-dev`
-  - 方式二/三（手动复制）：直接删除对应目标目录即可。
+```
+/plugin marketplace update moma-dev-marketplace   # 刷新 marketplace 元数据
+/plugin update moma-soft-dev                      # 升级插件
+/plugin uninstall moma-soft-dev                   # 卸载插件
+/plugin marketplace remove moma-dev-marketplace   # 移除 marketplace（可选）
+```
 
 ## 目录结构
 
 ```
 plugins/moma-soft-dev/
-├── .github/plugin/plugin.json        # 插件清单（Copilot CLI / Claude Code 兼容）
+├── .claude-plugin/plugin.json        # 插件清单（Claude Code 插件规范）
 ├── README.md                         # 本文件
+├── templates/
+│   └── simple-software/              # 内置文档模板（01~08），随插件一起分发
+│       ├── README.md                 # 文档体系说明
+│       ├── 01-项目概要.md ~ 07-测试策略.md
+│       └── 08-变更日志.md
 └── skills/
-    ├── moma-soft-dev/                # 总览父 skill（共享约定与文档体系说明）
+    ├── moma-soft-dev/                # 总览技能（共享约定与文档体系说明）
     │   ├── SKILL.md
-    │   ├── evals/evals.json
+    │   ├── evals/evals.json          # 技能评测用例
     │   └── references/
-    │       ├── common-conventions.md # 所有子 skill 共享的约定
+    │       ├── common-conventions.md # 所有子技能共享的约定
     │       └── doc-dependencies.md   # 文档间依赖关系图
     ├── moma-init/SKILL.md
     ├── moma-sync/SKILL.md
@@ -122,3 +107,5 @@ plugins/moma-soft-dev/
     ├── moma-fix/SKILL.md
     └── moma-session-complete/SKILL.md
 ```
+
+> 插件运行所需的全部资源（模板、参考文档）均已内置在插件目录中，通过 `${CLAUDE_PLUGIN_ROOT}` 引用（由 Claude Code 自动解析为插件安装根目录），安装后开箱即用，无需依赖本仓库的其他文件。

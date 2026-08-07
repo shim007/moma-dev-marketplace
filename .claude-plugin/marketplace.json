@@ -1,0 +1,22 @@
+{
+  "name": "moma-dev-marketplace",
+  "owner": {
+    "name": "MoMa Soft"
+  },
+  "plugins": [
+    {
+      "name": "moma-soft-dev",
+      "source": "./plugins/moma-soft-dev",
+      "description": "AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 /moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-session-complete 共 8 个工作指令，覆盖需求、设计、编码、修复、归档全流程。",
+      "version": "1.0.0",
+      "author": "MoMa Soft",
+      "keywords": [
+        "moma",
+        "software-development",
+        "documentation",
+        "workflow",
+        "skills"
+      ]
+    }
+  ]
+}

@@ -7,11 +7,11 @@ description: 'moma-soft-dev 子技能 —— 编码开始。当用户消息以 /
 
 直接进入阶段4，基于已生成的文档进行编码。
 
-> 共享约定见 `../moma-soft-dev/references/common-conventions.md`，编码通用约束（约束即法律 / 可追溯性 / 先登记后变更 / 自我验证）必须严格遵守。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，编码通用约束（约束即法律 / 可追溯性 / 先登记后变更 / 自我验证）必须严格遵守。
 
 ## 上下文范围
 
-加载 `docs/` 下的 01~07 全部文档，特别关注所有 `⚠️ AI 约束` 标记。不加载 `simple-software/` 模板。
+加载 `docs/` 下的 01~07 全部文档，特别关注所有 `⚠️ AI 约束` 标记。不加载插件内置模板（`${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`）。
 
 ## 步骤
 

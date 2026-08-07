@@ -7,7 +7,7 @@ description: 'moma-soft-dev 子技能 —— 功能新增。当用户消息以 /
 
 增加原有需求中未描述的全新功能。
 
-> 共享约定见 `../moma-soft-dev/references/common-conventions.md`，编码通用约束必须严格遵守。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，编码通用约束必须严格遵守。
 
 ## 上下文范围
 

@@ -17,23 +17,25 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 
 | 指令 | 子技能位置 | 用途 |
 |------|------------|------|
-| `/moma-init` | `skills/moma-init/` | 启动新项目，生成全套文档 |
-| `/moma-sync` | `skills/moma-sync/` | 分析已有项目代码，补全或生成文档 |
-| `/moma-coding` | `skills/moma-coding/` | 文档就绪后进入编码 |
-| `/moma-modify` | `skills/moma-modify/` | 调整已有需求，同步文档与代码 |
-| `/moma-optimize` | `skills/moma-optimize/` | 对已有功能进行细节约束优化 |
-| `/moma-new` | `skills/moma-new/` | 增加原需求未包含的新功能 |
-| `/moma-fix` | `skills/moma-fix/` | 定位并修复代码异常 |
-| `/moma-session-complete` | `skills/moma-session-complete/` | 总结当前会话流程并归档 md 文档 |
+| `/moma-init` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-init/` | 启动新项目，生成全套文档 |
+| `/moma-sync` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-sync/` | 分析已有项目代码，补全或生成文档 |
+| `/moma-coding` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-coding/` | 文档就绪后进入编码 |
+| `/moma-modify` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-modify/` | 调整已有需求，同步文档与代码 |
+| `/moma-optimize` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-optimize/` | 对已有功能进行细节约束优化 |
+| `/moma-new` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-new/` | 增加原需求未包含的新功能 |
+| `/moma-fix` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-fix/` | 定位并修复代码异常 |
+| `/moma-session-complete` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-session-complete/` | 总结当前会话流程并归档 md 文档 |
 
 ## 共享约定
 
 所有 `moma-*` 子技能都遵循以下共享约定，集中维护在：
 
-- **`references/common-conventions.md`** —— 文档存放规则（`dev-docs/` 优先于 `docs/`）、文档体系与阶段、编码通用约束、上下文精简原则
-- **`references/doc-dependencies.md`** —— 文档间依赖关系图
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`** —— 文档存放规则（`dev-docs/` 优先于 `docs/`）、文档体系与阶段、编码通用约束、上下文精简原则
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/doc-dependencies.md`** —— 文档间依赖关系图
 
 子技能在执行前应先阅读 `common-conventions.md` 以获取最新约定。
+
+> `${CLAUDE_PLUGIN_ROOT}` 由 Claude Code 自动解析为本插件的安装根目录；模板文件位于 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
 
 ## 与单 skill 旧版本的关系
 

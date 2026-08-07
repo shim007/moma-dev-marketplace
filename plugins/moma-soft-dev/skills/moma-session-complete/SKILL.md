@@ -7,11 +7,11 @@ description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /
 
 将当前会话的全过程进行结构化总结，并保存为 markdown 文档归档，便于后续追溯本次会话做了什么、为什么这么做、产出了什么。
 
-> 共享约定见 `../moma-soft-dev/references/common-conventions.md`。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。
 
 ## 上下文范围
 
-仅加载当前会话的对话历史与本次会话产生/修改的文件清单。不加载 `simple-software/` 模板，不加载与本次会话无关的文档与代码。
+仅加载当前会话的对话历史与本次会话产生/修改的文件清单。不加载插件内置模板（`${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`），不加载与本次会话无关的文档与代码。
 
 ## 步骤
 
