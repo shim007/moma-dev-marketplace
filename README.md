@@ -6,7 +6,7 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 
 | 插件 | 版本 | 说明 |
 |------|------|------|
-| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.5.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-test`、`/moma-release` 等 16 个工作指令 |
+| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.6.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-test`、`/moma-release`、`/moma-commit` 等 17 个工作指令 |
 
 ## 快速安装
 
@@ -61,6 +61,7 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 | `/moma-security` | 六维度安全审查，输出分级问题与报告 |
 | `/moma-retro` | 项目/里程碑复盘，产出经验教训与改进行动 |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
+| `/moma-commit` | 一键区分未提交变更并分组做规范提交（项目周期外的实用指令） |
 
 ## 仓库结构
 
@@ -73,7 +74,7 @@ moma-dev-marketplace/
 ├── plugins/
 │   └── moma-soft-dev/            # 插件本体（安装时以该目录为单位整体分发）
 │       ├── .claude-plugin/plugin.json
-│       ├── skills/               # 17 个技能（16 个工作指令 + 1 个总览）
+│       ├── skills/               # 18 个技能（17 个工作指令 + 1 个总览）
 │       └── templates/            # 内置文档模板，随插件分发
 ├── software/                     # 完整版（10 阶段）软件文档模板库，参考资料，暂未打包为插件
 ├── moma-soft-dev-workspace/      # moma-soft-dev 技能评测（evals）工作区与结果存档

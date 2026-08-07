@@ -26,8 +26,9 @@ AI 驱动的简化软件开发流程管控插件，通过标准化的文档体�
 | `/moma-security` | 六维度安全审查，输出分级问题与报告 |
 | `/moma-retro` | 项目/里程碑复盘，产出经验教训与改进行动 |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
+| `/moma-commit` | 一键区分未提交变更并分组做规范提交（项目周期外的实用指令） |
 
-另有一个总览技能 `moma-soft-dev`，用于介绍整体流程与共享约定，不执行具体工作。
+另有一个总览技能 `moma-soft-dev`，用于介绍整体流程与共享约定，不执行具体工作。`/moma-commit` 是项目周期外的实用指令，不依赖 01~09 文档，可随时用于整理工作区中混杂的未提交变更。
 
 ## 安装
 
@@ -117,7 +118,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 ## moma-soft-dev 工作指令
 
 当用户消息以下列任一指令开头时，执行对应的 moma-soft-dev 技能：
-/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete
+/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete、/moma-commit
 
 执行规则：
 
@@ -171,7 +172,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 
 ## 验证安装
 
-- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 16 个工作指令的自动补全。
+- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 17 个工作指令的自动补全。
 - **通用安装法**：向 AI 发送 `/moma-init 我想做一个待办事项应用`，确认其能读取 `.moma/templates/simple-software/` 下的模板并开始生成文档。
 
 ## 升级 / 卸载
@@ -221,7 +222,8 @@ plugins/moma-soft-dev/
     ├── moma-migrate/SKILL.md
     ├── moma-security/SKILL.md
     ├── moma-retro/SKILL.md
-    └── moma-session-complete/SKILL.md
+    ├── moma-session-complete/SKILL.md
+    └── moma-commit/SKILL.md
 ```
 
 > 插件运行所需的全部资源（模板、参考文档）均已内置在插件目录中，通过 `${CLAUDE_PLUGIN_ROOT}` 引用。该变量在 Claude Code / Copilot CLI 中自动展开为插件安装根目录；在其他工具中不会展开，按上文"通用挂载段落"的方式将其解析为插件目录实际路径即可，因此本插件可跨工具使用。
