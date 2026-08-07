@@ -1,6 +1,6 @@
 ---
 name: moma-soft-dev
-description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束、验证阶梯、文档预检规则）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
+description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束、验证阶梯、文档预检规则）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete、/moma-commit。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
 ---
 
 # moma-soft-dev：AI 驱动的简化软件开发流程（总览）
@@ -33,6 +33,9 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 | `/moma-security` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-security/` | 六维度安全审查，输出分级问题 |
 | `/moma-retro` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-retro/` | 项目/里程碑复盘与改进行动 |
 | `/moma-session-complete` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-session-complete/` | 总结当前会话流程并归档 md 文档 |
+| `/moma-commit` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-commit/` | 一键区分未提交变更并分组做规范提交（项目周期外的实用指令） |
+
+其中 `/moma-commit` 是项目周期外的实用指令：不依赖 01~09 文档、不做文档预检，用于整理工作区中混杂的未提交变更（区分有用改动、应忽略文件、无意义空文件与疑似敏感文件），可在任何时候单独使用。
 
 ## 共享约定
 
