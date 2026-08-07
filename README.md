@@ -85,6 +85,8 @@ moma-dev-marketplace/
 
 重启会话后用 `plugins/moma-soft-dev/skills/moma-soft-dev/evals/evals.json` 中的 prompt 抽查场景。
 
+> 已知问题：部分 Claude Code 版本对本地目录源 marketplace 的插件 install/update 会报 *"source type ... does not support"*。此时改用仓库自带的同步脚本：修改插件后运行 `bash scripts/sync-local-plugin.sh`，再重启会话即可。
+
 ### 发布新版本
 
 1. 修改插件内容后，同步更新两处版本号（语义化版本）：

@@ -12,6 +12,7 @@
   - `.claude-plugin/plugin.json` —— 插件清单
   - `skills/<技能名>/SKILL.md` —— 技能定义（Agent Skills 开放格式，跨工具可用）
   - `templates/`、`references/` 等 —— 插件内置资源
+- `scripts/` —— 开发辅助脚本（如 `sync-local-plugin.sh`：本地开发时同步插件到 Claude Code 安装）
 - `software/` —— 完整版（10 阶段）文档模板库，仅参考资料，未打包进任何插件
 - `moma-soft-dev-workspace/` —— 技能评测（evals）工作区与历史结果存档
 
