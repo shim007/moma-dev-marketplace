@@ -35,7 +35,7 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 
 子技能在执行前应先阅读 `common-conventions.md` 以获取最新约定。
 
-> `${CLAUDE_PLUGIN_ROOT}` 由 Claude Code 自动解析为本插件的安装根目录；模板文件位于 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
+> `${CLAUDE_PLUGIN_ROOT}` 在 Claude Code / GitHub Copilot CLI 中自动解析为本插件的安装根目录；在其他工具中若未展开，视为本插件目录的绝对路径即可。模板文件位于 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
 
 ## 与单 skill 旧版本的关系
 

@@ -6,7 +6,7 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 
 | 插件 | 版本 | 说明 |
 |------|------|------|
-| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.0.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-fix` 等 8 个工作指令 |
+| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.1.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-fix` 等 8 个工作指令 |
 
 ## 快速安装
 
@@ -20,6 +20,20 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 重启 Claude Code（或开启新会话）后，在输入栏键入 `/moma-` 即可看到全部指令。
 
 更详细的安装、验证、升级、卸载说明见 [plugins/moma-soft-dev/README.md](./plugins/moma-soft-dev/README.md)。
+
+## 跨工具支持
+
+本 marketplace 以 Claude Code 插件格式打包，但技能内容为纯 Markdown 自然语言指令、不绑定特定工具，也可在其他 AI 工具中使用：
+
+| 工具 | 安装方式 |
+|------|---------|
+| Claude Code | `/plugin marketplace add` + `/plugin install`（完整插件体验） |
+| GitHub Copilot CLI | 同上（兼容格式），或手动复制插件目录 |
+| Codex CLI / OpenCode | 通用安装法：复制插件目录 + 在 `AGENTS.md` 挂载（见插件 README 附录） |
+| Cursor | 通用安装法，或复制到原生 `.cursor/skills/` 目录 |
+| Gemini CLI 及其他 | 通用安装法：复制插件目录 + 在 `GEMINI.md` 等指令文件挂载 |
+
+各工具的详细安装步骤见 [plugins/moma-soft-dev/README.md](./plugins/moma-soft-dev/README.md#安装)。
 
 ## moma-soft-dev 是什么
 
@@ -45,7 +59,9 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 ```
 moma-dev-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json          # marketplace 清单（Claude Code 插件规范要求的唯一入口）
+│   └── marketplace.json          # marketplace 主清单（Claude Code 插件规范入口）
+├── .github/plugin/
+│   └── marketplace.json          # GitHub Copilot CLI 兼容副本（须与主清单同步）
 ├── plugins/
 │   └── moma-soft-dev/            # 插件本体（安装时以该目录为单位整体分发）
 │       ├── .claude-plugin/plugin.json
@@ -53,7 +69,8 @@ moma-dev-marketplace/
 │       └── templates/            # 内置文档模板，随插件分发
 ├── software/                     # 完整版（10 阶段）软件文档模板库，参考资料，暂未打包为插件
 ├── moma-soft-dev-workspace/      # moma-soft-dev 技能评测（evals）工作区与结果存档
-├── CLAUDE.md                     # 面向 AI 助手的项目开发约定
+├── AGENTS.md                     # 面向所有 AI 助手的项目开发约定（跨工具标准）
+├── CLAUDE.md                     # Claude Code 专属补充（指向 AGENTS.md）
 └── README.md                     # 本文件
 ```
 

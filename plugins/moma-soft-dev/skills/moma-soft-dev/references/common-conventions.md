@@ -12,7 +12,7 @@
 
 模板文件统一来自插件内置模板目录 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
 
-> `${CLAUDE_PLUGIN_ROOT}` 由 Claude Code 自动解析为本插件的安装根目录；若在某处未被展开，可在插件安装目录（通常为 `~/.claude/plugins/` 下的 `moma-soft-dev`）内找到对应文件。
+> `${CLAUDE_PLUGIN_ROOT}` 在 Claude Code / GitHub Copilot CLI 中会自动解析为本插件的安装根目录；在其他 AI 工具中可能不会展开，此时请将其理解为"本插件所在目录的绝对路径"（即安装或手动拷贝 `moma-soft-dev` 插件目录的位置），再据此定位文件。
 
 > 各 `moma-*` skill 中出现的 `docs/` 路径均遵循上述查找/创建规则，实际优先使用 `dev-docs/`。
 
