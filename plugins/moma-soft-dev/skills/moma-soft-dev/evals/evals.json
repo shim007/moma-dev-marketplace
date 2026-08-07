@@ -60,7 +60,7 @@
     {
       "id": 2,
       "prompt": "/moma-fix 用户反馈在提交订单的时候页面一直转圈，控制台报 500 错误，看了下后端日志是 NullPointerException，好像跟地址字段有关",
-      "expected_output": "分析异常原因（地址字段空指针），定位相关代码，制定修复计划，修复后输出问题原因说明，按照缺陷记录模板将 bug 记录到 docs/09-BUG记录.md，并生成以 bug 为标识的提交信息。",
+      "expected_output": "分析异常原因（地址字段空指针），定位相关代码，制定修复计划，修复后输出问题原因说明，按照缺陷记录模板将 bug 记录到 docs/09-BUG记录.md（状态置为已修复），并生成以 bug 为标识的提交信息。",
       "files": [],
       "assertions": [
         {
@@ -76,6 +76,11 @@
         {
           "id": "a2-3",
           "text": "提交信息以 bug: 开头",
+          "type": "content_check"
+        },
+        {
+          "id": "a2-4",
+          "text": "新登记的 BUG 条目状态为“已修复”，并提示回归验证交由 /moma-test 完成",
           "type": "content_check"
         }
       ]
@@ -122,6 +127,218 @@
         {
           "id": "a4-3",
           "text": "明确表示需用户确认后才执行 worktree 迁移",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "/moma-sync 这是一个已经开发了一半的 Flask 博客项目，代码在 src/ 下，没有任何项目文档，帮我补齐",
+      "expected_output": "扫描源码、依赖清单与目录结构，反向推导出技术栈（Flask）与已实现功能（博客相关），从阶段1开始按 /moma-init 流程生成 01~07 全套文档，文档内容与代码现状一致，最后提示用户审核并建议 /moma-coding。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a5-1",
+          "text": "生成了 01~07 全套文档（dev-docs/ 或 docs/ 下）",
+          "type": "count_check"
+        },
+        {
+          "id": "a5-2",
+          "text": "文档中正确识别了 Flask 技术栈与已有代码结构",
+          "type": "content_check"
+        },
+        {
+          "id": "a5-3",
+          "text": "未修改任何业务代码",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "/moma-coding 帮我把登录功能实现一下",
+      "expected_output": "（场景设定：当前目录不存在 dev-docs/ 或 docs/，也没有 01/02 文档）按文档预检规则中止编码：明确告知缺少约束文档，不进入编码；根据项目现状路由——无代码则建议 /moma-init，已有代码则建议 /moma-sync。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a6-1",
+          "text": "未开始编写业务代码（无新增源码文件）",
+          "type": "count_check"
+        },
+        {
+          "id": "a6-2",
+          "text": "输出中说明缺少文档并建议执行 /moma-init 或 /moma-sync",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "/moma-test 订单模块刚实现完，帮我按测试策略补齐测试并跑一遍",
+      "expected_output": "盘点现有测试，对照 07-测试策略补齐订单模块缺失的用例（正向/反向/边界/异常），执行项目测试命令，将结果写入 test-reports/ 下的测试报告；失败用例若判定为业务代码缺陷，按缺陷记录模板登记到 09-BUG记录.md（状态待修复）并建议 /moma-fix，全程不修改业务代码。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a7-1",
+          "text": "test-reports/ 目录下生成了测试报告文件（含结果总览）",
+          "type": "file_exists"
+        },
+        {
+          "id": "a7-2",
+          "text": "新增或补齐了订单模块的测试代码",
+          "type": "content_check"
+        },
+        {
+          "id": "a7-3",
+          "text": "发现的缺陷登记到 09-BUG记录.md 且状态为“待修复”，或未修改业务代码",
+          "type": "content_check"
+        },
+        {
+          "id": "a7-4",
+          "text": "生成以 test: 开头的提交（如有版本控制）",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "/moma-test 上次修的 BUG-3（地址空指针）验证一下",
+      "expected_output": "（场景设定：09-BUG记录.md 中 BUG-3 状态为“已修复”）为 BUG-3 补写或补跑回归用例；回归通过后按规则4的“状态流转例外”将 BUG-3 状态改为“已验证”，只改动状态一行并在条目末尾追加含会话 ID 的状态备注，条目其余内容与已有条目无损。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a8-1",
+          "text": "BUG-3 状态流转为“已验证”（回归通过时）",
+          "type": "content_check"
+        },
+        {
+          "id": "a8-2",
+          "text": "状态更新附带状态备注行（含旧状态→新状态、会话 ID）",
+          "type": "content_check"
+        },
+        {
+          "id": "a8-3",
+          "text": "09-BUG记录.md 中其他条目内容未被修改",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "/moma-review 评审一下我这次未提交的改动",
+      "expected_output": "以当前工作区未提交改动为评审范围，对照 02/03/06/07 文档与 ⚠️ AI 约束逐维度评审（需求符合性、约束符合性、架构、规约、正确性与安全、测试充分性），问题按阻断/严重/一般/建议分级，评审记录写入 review-records/，给出通过/有条件通过/不通过结论；不修改任何业务代码。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a9-1",
+          "text": "review-records/ 目录下生成了评审记录文件（含分级问题清单与结论）",
+          "type": "file_exists"
+        },
+        {
+          "id": "a9-2",
+          "text": "问题条目包含位置、描述、违反的约束/规约、修复建议",
+          "type": "content_check"
+        },
+        {
+          "id": "a9-3",
+          "text": "未修改评审范围内的业务代码",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "/moma-check 项目做了几轮迭代了，帮我看看文档和代码还对不对得上",
+      "expected_output": "只读比对 01~07 文档与代码现状，按需求、数据模型、接口、技术栈、规约、测试六类做双向检查（文档有代码无/代码有文档无/两者不一致），漂移按高/中/低定级，检查报告写入 check-reports/ 并为每项漂移给出后续指令建议（/moma-coding、/moma-fix、/moma-modify、/moma-sync）；除报告外不写入任何文件。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a10-1",
+          "text": "check-reports/ 目录下生成了检查报告（含漂移清单与严重度）",
+          "type": "file_exists"
+        },
+        {
+          "id": "a10-2",
+          "text": "漂移条目附带建议的后续 /moma-* 指令",
+          "type": "content_check"
+        },
+        {
+          "id": "a10-3",
+          "text": "未修改任何代码与 01~09 既有文档",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "/moma-release 发一个版本吧",
+      "expected_output": "统计上一个 tag 以来的 08 CR 条目、09 缺陷与提交记录；按语义化版本推荐版本号（含 feat 则 minor，仅 fix/optimize/modify 则 patch）并呈现依据，获用户确认后生成 releases/vX.Y.Z-发布说明.md（聚合新增功能/优化/修复/已知问题），更新工程版本号文件（不动 01~07），在 08 末尾追加发布标记 CR 条目，生成 release: 提交；打 tag 前再次征求用户确认。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a11-1",
+          "text": "版本号推荐有语义化版本依据，且在用户确认前未执行提交与 tag",
+          "type": "content_check"
+        },
+        {
+          "id": "a11-2",
+          "text": "releases/ 目录下生成了发布说明文件（含新增功能/缺陷修复等分类）",
+          "type": "file_exists"
+        },
+        {
+          "id": "a11-3",
+          "text": "08-变更日志.md 末尾追加了发布标记条目（含会话 ID），既有内容未改动",
+          "type": "content_check"
+        },
+        {
+          "id": "a11-4",
+          "text": "tag 操作前明确征求用户确认（说明不可撤销）",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "/moma-optimize 把订单服务的计价逻辑重构成策略模式，外部行为完全不变，纯重构",
+      "expected_output": "进入纯重构模式：跳过 01~07 文档更新（文档一律不动），在 08-变更日志中登记“技术变更（纯重构，无文档变更）”条目（含会话 ID），重构后确保既有测试全部通过（无测试时提示回归风险或建议先 /moma-test），生成 optimize: 前缀提交，完成花名册收尾。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a12-1",
+          "text": "01~07 文档均未被修改",
+          "type": "content_check"
+        },
+        {
+          "id": "a12-2",
+          "text": "08-变更日志.md 追加了注明“纯重构”的条目",
+          "type": "content_check"
+        },
+        {
+          "id": "a12-3",
+          "text": "提交信息以 optimize: 开头",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "/moma-modify 把“在线聊天议价”功能整个砍掉，不需要了",
+      "expected_output": "识别为删除型变更，触发高危规则：先列出影响面清单（相关代码、数据表、接口、下游文档、历史数据），获用户明确确认后才执行；数据处理默认不物理删除（软删除或迁移方案）；文档同步更新（01/02 及受影响的 03~07），在 08 中以独立 CR 条目登记“需求变更（删除）”，生成 modify: 前缀提交。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a13-1",
+          "text": "执行前列出影响面清单并征求用户明确确认",
+          "type": "content_check"
+        },
+        {
+          "id": "a13-2",
+          "text": "未获确认前未删除任何代码或数据",
+          "type": "content_check"
+        },
+        {
+          "id": "a13-3",
+          "text": "08-变更日志.md 登记了删除型变更条目，01/02 文档同步移除该功能描述",
           "type": "content_check"
         }
       ]

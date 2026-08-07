@@ -13,10 +13,14 @@ AI 驱动的简化软件开发流程管控插件，通过标准化的文档体�
 | `/moma-init` | 启动新项目，按阶段生成 01~07 全套文档 |
 | `/moma-sync` | 分析已有项目代码，反向补全或生成 01~07 文档 |
 | `/moma-coding` | 文档就绪后进入编码 |
-| `/moma-modify` | 调整已有需求，同步更新文档与代码 |
-| `/moma-optimize` | 对已有功能进行细节约束优化 |
+| `/moma-modify` | 调整已有需求（含功能删减），同步更新文档与代码 |
+| `/moma-optimize` | 细化已有功能的行为边界（含纯重构模式） |
 | `/moma-new` | 增加原需求未包含的新功能 |
 | `/moma-fix` | 定位并修复代码异常 |
+| `/moma-test` | 补齐并执行测试，输出报告，闭环缺陷状态 |
+| `/moma-review` | 对照文档与规约评审代码变更，输出分级问题 |
+| `/moma-check` | 只读检查文档与代码的双向漂移（防腐层） |
+| `/moma-release` | 聚合变更记录，产出发布说明、版本号与 tag |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
 
 另有一个总览技能 `moma-soft-dev`，用于介绍整体流程与共享约定，不执行具体工作。
@@ -109,7 +113,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 ## moma-soft-dev 工作指令
 
 当用户消息以下列任一指令开头时，执行对应的 moma-soft-dev 技能：
-/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-session-complete
+/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-session-complete
 
 执行规则：
 
@@ -133,10 +137,19 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
               ▼
   ┌───────────┼────────────────────────┐
 /moma-modify  /moma-optimize  /moma-new  /moma-fix
-（需求调整）   （细节优化）    （功能新增）（异常修复）
+（需求调整）  （细节优化/重构）（功能新增）（异常修复）
+              ▼
+        质量与发布闭环
+              ▼
+/moma-test（测试验证、缺陷回归）→ /moma-review（评审把关）
+              ▼
+/moma-release（发布说明、版本号、tag）
               ▼
       /moma-session-complete（会话归档）
 ```
+
+- **防腐层：** 开发过程中定期执行 `/moma-check`（只读、可与其他指令并行），检测文档与代码的双向漂移，防止文档腐烂导致约束失效。
+- **缺陷状态闭环：** `/moma-fix` 修复后置为"已修复"，`/moma-test` 回归通过后流转为"已验证"（状态流转规则见共享约定规则4）。
 
 ## 多会话并行（多 agent 同目录协作）
 
@@ -153,7 +166,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 
 ## 验证安装
 
-- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 8 个工作指令的自动补全。
+- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 12 个工作指令的自动补全。
 - **通用安装法**：向 AI 发送 `/moma-init 我想做一个待办事项应用`，确认其能读取 `.moma/templates/simple-software/` 下的模板并开始生成文档。
 
 ## 升级 / 卸载
@@ -186,7 +199,8 @@ plugins/moma-soft-dev/
     │   ├── evals/evals.json          # 技能评测用例
     │   └── references/
     │       ├── common-conventions.md # 所有子技能共享的约定
-    │       └── doc-dependencies.md   # 文档间依赖关系图
+    │       ├── doc-dependencies.md   # 文档间依赖关系图
+    │       └── change-workflow.md    # modify/optimize/new 共用变更流程
     ├── moma-init/SKILL.md
     ├── moma-sync/SKILL.md
     ├── moma-coding/SKILL.md
@@ -194,6 +208,10 @@ plugins/moma-soft-dev/
     ├── moma-optimize/SKILL.md
     ├── moma-new/SKILL.md
     ├── moma-fix/SKILL.md
+    ├── moma-test/SKILL.md
+    ├── moma-review/SKILL.md
+    ├── moma-check/SKILL.md
+    ├── moma-release/SKILL.md
     └── moma-session-complete/SKILL.md
 ```
 

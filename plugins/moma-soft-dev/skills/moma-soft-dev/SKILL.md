@@ -1,6 +1,6 @@
 ---
 name: moma-soft-dev
-description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-session-complete。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
+description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束、验证阶梯、文档预检规则）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-session-complete。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
 ---
 
 # moma-soft-dev：AI 驱动的简化软件开发流程（总览）
@@ -20,29 +20,63 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 | `/moma-init` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-init/` | 启动新项目，生成全套文档 |
 | `/moma-sync` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-sync/` | 分析已有项目代码，补全或生成文档 |
 | `/moma-coding` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-coding/` | 文档就绪后进入编码 |
-| `/moma-modify` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-modify/` | 调整已有需求，同步文档与代码 |
-| `/moma-optimize` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-optimize/` | 对已有功能进行细节约束优化 |
+| `/moma-modify` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-modify/` | 调整已有需求（含功能删减），同步文档与代码 |
+| `/moma-optimize` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-optimize/` | 细化已有功能的行为边界（含纯重构模式） |
 | `/moma-new` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-new/` | 增加原需求未包含的新功能 |
 | `/moma-fix` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-fix/` | 定位并修复代码异常 |
+| `/moma-test` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-test/` | 补齐并执行测试，闭环缺陷状态 |
+| `/moma-review` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-review/` | 对照文档与规约评审代码变更 |
+| `/moma-check` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-check/` | 只读检查文档与代码的双向漂移 |
+| `/moma-release` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-release/` | 聚合变更记录，产出发布说明与 tag |
 | `/moma-session-complete` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-session-complete/` | 总结当前会话流程并归档 md 文档 |
 
 ## 共享约定
 
 所有 `moma-*` 子技能都遵循以下共享约定，集中维护在：
 
-- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`** —— 文档存放规则（`dev-docs/` 优先于 `docs/`）、文档体系与阶段、编码通用约束、上下文精简原则
-- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/doc-dependencies.md`** —— 文档间依赖关系图
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`** —— 文档存放规则（`dev-docs/` 优先于 `docs/`）、文档体系与阶段、编码通用约束（含验证阶梯）、文档预检规则、上下文精简原则、多会话并行规约
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/doc-dependencies.md`** —— 文档间依赖关系图与派生产物清单
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/change-workflow.md`** —— `/moma-modify`、`/moma-optimize`、`/moma-new` 共用的变更流程（登记→文档同步→代码变更→变更日志→提交）
 
 子技能在执行前应先阅读 `common-conventions.md` 以获取最新约定。
+
+## 主流程与质量闭环
+
+```
+新项目                        已有代码的项目
+   │                              │
+/moma-init（生成全套文档）    /moma-sync（反向补全文档）
+   │                              │
+   └──────────┬───────────────────┘
+              ▼
+        用户审核文档
+              ▼
+        /moma-coding（受文档约束编码）
+              ▼
+  ┌───────────┼────────────────────────┐
+/moma-modify  /moma-optimize  /moma-new  /moma-fix
+（需求调整）   （细节优化/重构）（功能新增）（异常修复）
+              ▼
+        质量与发布闭环
+              ▼
+/moma-test（测试验证、缺陷回归）→ /moma-review（评审把关）
+              ▼
+/moma-release（发布说明、版本号、tag）
+              ▼
+/moma-session-complete（会话归档）
+```
+
+- **防腐层：** 开发过程中建议定期执行 `/moma-check`（只读、可并行），检测文档与代码的双向漂移，防止文档腐烂导致约束失效。
+- **缺陷状态闭环：** `/moma-fix` 修复后将 BUG 置为"已修复"，`/moma-test` 回归通过后按共享约定规则4的"状态流转例外"流转为"已验证"。
 
 ## 多会话并行
 
 moma-* 工作指令支持多个 AI 会话（agent）在同一工作目录并行工作，核心规则六条：
 
 1. **会话登记** —— 每个会话在花名册 `<docs-root>/.moma-state/roster.md` 中登记会话 ID、指令、工作范围与状态；
-2. **代码并行** —— 涉及代码修改的指令声明工作范围，范围重叠时后到者拒绝执行，避免互相覆盖；
+2. **代码并行** —— 涉及代码修改的指令声明工作范围，范围重叠时后到者拒绝执行，避免互相覆盖；`/moma-check`、`/moma-review` 为只读指令，不参与范围冲突；
 3. **文档单写者** —— 01~07 文档同一时刻只允许一个会话写入；`/moma-init`、`/moma-sync` 为独占指令；
-4. **追加式写入** —— 08-变更日志与 09-BUG记录只允许追加含会话 ID 的条目，写入前后重读验证；
+4. **追加式写入** —— 08-变更日志与 09-BUG记录只允许追加含会话 ID 的条目（仅状态字段可按"状态流转例外"受控更新），写入前后重读验证；
 5. **git 兜底** —— 写入前打检查点提交，完成后只提交本会话范围内的文件，保证冲突可回滚、提交不互相污染；
 6. **worktree 兜底隔离** —— 范围重叠、文档单写者或独占指令冲突无法避免时，向用户提议迁移到独立 git worktree 继续（需前置检查与用户确认），把实时冲突转化为合并时的显式冲突处理。
 

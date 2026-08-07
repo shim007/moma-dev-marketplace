@@ -11,7 +11,7 @@
 4. **本地验证**：
    - `/plugin marketplace add <本仓库根目录绝对路径>`（已添加则 `/plugin marketplace update moma-dev-marketplace`）
    - `/plugin install moma-soft-dev@moma-dev-marketplace`（或 `/plugin update moma-soft-dev`）
-   - 重启会话，确认输入 `/moma-` 时 8 个工作指令全部出现
+   - 重启会话，确认输入 `/moma-` 时 12 个工作指令全部出现
    - 用 `plugins/moma-soft-dev/skills/moma-soft-dev/evals/evals.json` 中的 prompt 至少抽查 1 个场景
 5. **本地同步脚本**：当前 Claude Code 对 directory 源 marketplace 的插件执行 install/update 时会报 *"source type ... does not support"*。修改插件后改为运行同步脚本一键同步到本地安装（复制文件到缓存目录、更新注册记录、清理旧版本缓存），然后重启会话即可生效：
    - Linux/macOS/Git Bash：`bash scripts/sync-local-plugin.sh`

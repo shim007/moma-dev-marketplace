@@ -21,6 +21,7 @@ description: 'moma-soft-dev 子技能 —— 项目启动。当用户消息以 /
 
 2. **阶段1 — 需求定义**
    - 总结用户需求意图，详细拆分，补充用户未考虑到的需求细节。
+   - **关键歧义先确认：** 若需求存在影响架构走向的关键缺失或矛盾（核心业务规则不明、技术栈倾向冲突、目标用户或部署形态不清），先向用户提问确认，再生成文档；非关键细节可合理补充并在文档中注明"AI 补充，待确认"。
    - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/01-项目概要.md` 模板，生成 `docs/01-项目概要.md`。
    - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/02-产品需求文档.md` 模板，生成 `docs/02-产品需求文档.md`。
 

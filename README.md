@@ -6,7 +6,7 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 
 | 插件 | 版本 | 说明 |
 |------|------|------|
-| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.1.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-fix` 等 8 个工作指令 |
+| [moma-soft-dev](./plugins/moma-soft-dev/) | 1.4.0 | AI 驱动的简化软件开发流程管控插件：文档先行、约束编码，提供 `/moma-init`、`/moma-coding`、`/moma-test`、`/moma-release` 等 12 个工作指令 |
 
 ## 快速安装
 
@@ -48,10 +48,14 @@ MoMa Soft 的 **Claude Code 插件市场（Marketplace）** 仓库，用于发�
 | `/moma-init` | 启动新项目，按阶段生成 01~07 全套文档 |
 | `/moma-sync` | 分析已有项目代码，反向补全或生成文档 |
 | `/moma-coding` | 文档就绪后进入编码 |
-| `/moma-modify` | 调整已有需求，同步更新文档与代码 |
-| `/moma-optimize` | 对已有功能进行细节约束优化 |
+| `/moma-modify` | 调整已有需求（含功能删减），同步更新文档与代码 |
+| `/moma-optimize` | 细化已有功能的行为边界（含纯重构模式） |
 | `/moma-new` | 增加原需求未包含的新功能 |
 | `/moma-fix` | 定位并修复代码异常 |
+| `/moma-test` | 补齐并执行测试，输出报告，闭环缺陷状态 |
+| `/moma-review` | 对照文档与规约评审代码变更，输出分级问题 |
+| `/moma-check` | 只读检查文档与代码的双向漂移（防腐层） |
+| `/moma-release` | 聚合变更记录，产出发布说明、版本号与 tag |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
 
 ## 仓库结构
@@ -65,7 +69,7 @@ moma-dev-marketplace/
 ├── plugins/
 │   └── moma-soft-dev/            # 插件本体（安装时以该目录为单位整体分发）
 │       ├── .claude-plugin/plugin.json
-│       ├── skills/               # 9 个技能（8 个工作指令 + 1 个总览）
+│       ├── skills/               # 13 个技能（12 个工作指令 + 1 个总览）
 │       └── templates/            # 内置文档模板，随插件分发
 ├── software/                     # 完整版（10 阶段）软件文档模板库，参考资料，暂未打包为插件
 ├── moma-soft-dev-workspace/      # moma-soft-dev 技能评测（evals）工作区与结果存档
@@ -89,9 +93,10 @@ moma-dev-marketplace/
 
 ### 发布新版本
 
-1. 修改插件内容后，同步更新两处版本号（语义化版本）：
+1. 修改插件内容后，同步更新三处版本号（语义化版本）：
    - `plugins/moma-soft-dev/.claude-plugin/plugin.json` 的 `version`
    - `.claude-plugin/marketplace.json` 中对应插件条目的 `version`
+   - `.github/plugin/marketplace.json` 中对应插件条目的 `version`
 2. 提交并推送到 `master`；用户侧执行 `/plugin marketplace update` + `/plugin update` 即可获取。
 
 ### 新增插件

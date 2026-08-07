@@ -2,7 +2,7 @@
 
 本文件是本仓库面向所有 AI 编码助手（Claude Code、Codex CLI、Cursor、GitHub Copilot CLI、Gemini CLI 等）的**通用开发约定**，是项目规范的单一事实来源。Claude Code 专属补充见 `CLAUDE.md`。
 
-本仓库是 **moma-dev-marketplace** —— MoMa Soft 的 AI 插件市场（Marketplace），用于发布 moma 系列插件。当前发布的插件为 `moma-soft-dev`（文档驱动的软件开发流程管控，含 9 个技能）。
+本仓库是 **moma-dev-marketplace** —— MoMa Soft 的 AI 插件市场（Marketplace），用于发布 moma 系列插件。当前发布的插件为 `moma-soft-dev`（文档驱动的软件开发流程管控，含 13 个技能：12 个工作指令 + 1 个总览）。
 
 ## 仓库结构
 
@@ -25,7 +25,7 @@
    - `name` 必须与所在目录名一致；
    - `description` 写成单行 YAML 字符串（内容较长时用引号包成一行，不要折行）；
    - description 应说明触发时机（如"当用户消息以 /moma-init 开头时使用本技能"）。
-5. **共享约定单点维护**：moma-* 系列技能的共享约定集中在 `plugins/moma-soft-dev/skills/moma-soft-dev/references/common-conventions.md`（文档存放规则 `dev-docs/` 优先于 `docs/`、文档体系、编码通用约束）。修改任何技能行为时，须同步检查并更新该文件、总览技能 `moma-soft-dev/SKILL.md` 及 `evals/evals.json`。
+5. **共享约定单点维护**：moma-* 系列技能的共享约定集中在 `plugins/moma-soft-dev/skills/moma-soft-dev/references/common-conventions.md`（文档存放规则 `dev-docs/` 优先于 `docs/`、文档体系、编码通用约束、验证阶梯、文档预检规则、多会话并行规约）；`/moma-modify`、`/moma-optimize`、`/moma-new` 的共用变更流程集中在同目录 `change-workflow.md`。修改任何技能行为时，须同步检查并更新这些文件、总览技能 `moma-soft-dev/SKILL.md` 及 `evals/evals.json`。
 6. **版本一致性**：调整插件内容后，必须同步更新以下三处 `version`（语义化版本），保持一致：
    - `plugins/moma-soft-dev/.claude-plugin/plugin.json`
    - `.claude-plugin/marketplace.json` 中对应插件条目
@@ -42,7 +42,7 @@
 
 1. `/plugin marketplace add <本仓库根目录绝对路径>`（已添加则 `/plugin marketplace update moma-dev-marketplace`）
 2. `/plugin install moma-soft-dev@moma-dev-marketplace`（或 `/plugin update moma-soft-dev`）
-3. 重启会话，确认输入 `/moma-` 时 8 个工作指令全部出现在自动补全中
+3. 重启会话，确认输入 `/moma-` 时 12 个工作指令全部出现在自动补全中
 4. 用 `plugins/moma-soft-dev/skills/moma-soft-dev/evals/evals.json` 中的 prompt 至少抽查 1 个场景（如 `/moma-init`），确认模板能从 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/` 正常读取
 
 ## 写作约定
