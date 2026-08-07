@@ -79,6 +79,52 @@
           "type": "content_check"
         }
       ]
+    },
+    {
+      "id": 3,
+      "prompt": "/moma-optimize 细化“在线聊天议价”功能的行为边界：消息发出后超过 30 分钟未回复需自动提醒一次，聊天记录至少保留 90 天",
+      "expected_output": "按多会话并行规约执行：先生成会话 ID 并在花名册（docs 根目录下 .moma-state/roster.md）登记本会话的工作范围；写入 01~07 文档前先重新读取确认；以追加方式在 08-变更日志.md 记录变更且条目含会话 ID；提交只暂存本会话工作范围内的文件且提交信息含会话 ID；完成后将花名册状态改为已完成。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a3-1",
+          "text": "创建了花名册文件并登记本会话条目（含会话 ID、指令、工作范围、状态）",
+          "type": "content_check"
+        },
+        {
+          "id": "a3-2",
+          "text": "08-变更日志.md 中新追加的条目包含会话 ID，且已有条目未被修改",
+          "type": "content_check"
+        },
+        {
+          "id": "a3-3",
+          "text": "指令完成后花名册中本会话状态被改为已完成",
+          "type": "content_check"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "/moma-fix 优惠券核销接口报 500，疑似核销记录为空时的空指针。（场景设定：花名册中已有另一进行中会话的工作范围为 src/coupon/，与本次修复重叠；项目为 git 仓库且文档已入库）",
+      "expected_output": "检测到工作范围冲突后不强行执行：向用户报告冲突，并按 worktree 兜底隔离规则提议迁移到独立 worktree（给出 worktree 路径与分支名，说明依赖重装等代价），或建议等待对方会话完成/调整范围；在用户确认前不得创建 worktree，也不得修改冲突范围内的文件。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "a4-1",
+          "text": "检测到工作范围冲突，未强行修改冲突范围内的文件",
+          "type": "content_check"
+        },
+        {
+          "id": "a4-2",
+          "text": "提出了 worktree 隔离提议（含路径与分支名）或等待/调整范围的建议",
+          "type": "content_check"
+        },
+        {
+          "id": "a4-3",
+          "text": "明确表示需用户确认后才执行 worktree 迁移",
+          "type": "content_check"
+        }
+      ]
     }
   ]
 }
