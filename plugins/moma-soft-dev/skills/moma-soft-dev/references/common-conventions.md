@@ -29,7 +29,7 @@
 
 ## 编码通用约束
 
-适用于所有涉及代码变更的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`）：
+适用于所有涉及代码变更的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`、`/moma-migrate`）；`/moma-incident` 应急时在不影响止血的前提下同样遵守，止血需要的临时偏离必须事后在 08 补记：
 
 1. **约束即法律：** 文档中的 `⚠️ AI 约束` 标记具有最高优先级，编码时不得违反。
 2. **可追溯性：** 代码实现必须能追溯到需求文档中的具体条目。
@@ -43,12 +43,13 @@
 
 ## 文档预检规则
 
-依赖 01~07 文档的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`、`/moma-review`、`/moma-check`、`/moma-release`）执行前，必须先按"文档存放规则"定位 `<docs-root>`，并检查阶段1文档（`01-项目概要.md` 或 `02-产品需求文档.md`）是否存在：
+依赖 01~07 文档的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`、`/moma-review`、`/moma-check`、`/moma-release`、`/moma-migrate`、`/moma-security`、`/moma-retro`）执行前，必须先按"文档存放规则"定位 `<docs-root>`，并检查阶段1文档（`01-项目概要.md` 或 `02-产品需求文档.md`）是否存在：
 
 - **`<docs-root>` 不存在或阶段1文档缺失：** 中止本次执行并路由——无代码的新项目建议先执行 `/moma-init`；已有代码的项目建议先执行 `/moma-sync`。不得在无约束文档的情况下进入编码或变更。
 - **仅部分文档缺失**（如有 01/02 但缺 03~07 中的某几份）：可继续执行，但必须向用户明确指出缺失的文档及其影响（如"缺少 07-测试策略，本次无法验证测试要求"），不得静默视为无约束。
-- **例外——`/moma-fix`：** 修复线上或紧急缺陷不应被文档缺失阻塞。文档缺失时告知用户后跳过依赖文档的步骤（约束核对、07 缺陷模板），继续完成定位与修复，缺陷记录使用 `/moma-fix` 技能内置模板，并建议事后 `/moma-sync` 补齐文档。
-- **例外——`/moma-review`：** 文档缺失时降级为通用工程评审（见该技能说明），不中止。
+- **例外——`/moma-fix` 与 `/moma-incident`：** 修复缺陷与事故应急不应被文档缺失阻塞。文档缺失时告知用户后跳过依赖文档的步骤，继续完成处理，记录使用各技能内置模板，并建议事后 `/moma-sync` 补齐文档。
+- **例外——`/moma-review`、`/moma-security`：** 文档缺失时降级为通用工程评审/通用安全基线审查（见各技能说明），不中止。
+- **例外——`/moma-retro`：** 复盘的输入主要是过程记录（08/09/session-records），阶段1文档缺失时跳过目标对照章节并注明，不中止。
 
 ## 上下文精简原则
 
@@ -79,8 +80,9 @@ moma-* 工作指令支持多个 AI 会话（agent）在同一工作目录下并�
 
 ### 规则2：工作范围与代码并行
 
-- 涉及代码修改的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`、`/moma-release`）登记时必须在花名册中声明**工作范围**：本次将修改的具体文件/目录（如 `src/auth/`、`src/api/user.ts`），尽量具体；无法预先确定时，先分析代码确定范围，再登记，再动手。
-- 只读或仅产出独立记录文件的指令（`/moma-check`、`/moma-review`）不声明代码工作范围，不参与范围冲突判定，可与其他指令并行。
+- 涉及代码修改的指令（`/moma-coding`、`/moma-modify`、`/moma-optimize`、`/moma-new`、`/moma-fix`、`/moma-test`、`/moma-release`、`/moma-migrate`、`/moma-incident`）登记时必须在花名册中声明**工作范围**：本次将修改的具体文件/目录（如 `src/auth/`、`src/api/user.ts`），尽量具体；无法预先确定时，先分析代码确定范围，再登记，再动手。
+- 只读或仅产出独立记录文件的指令（`/moma-check`、`/moma-review`、`/moma-security`、`/moma-retro`）不声明代码工作范围，不参与范围冲突判定，可与其他指令并行。
+- **应急优先：** `/moma-incident` 遇工作范围重叠时，可在告知冲突会话并获用户确认后优先执行（见该技能说明）。
 - 登记时与花名册中其他"进行中"条目的工作范围比对：**存在重叠则拒绝执行**，并告知用户与哪个会话冲突、其范围是什么，由用户调整本会话范围或等待对方完成。
 - 任务横跨整个项目（如首次实现）时，范围声明为"全项目"，自然与其他会话互斥。
 
@@ -154,4 +156,8 @@ moma-* 工作指令支持多个 AI 会话（agent）在同一工作目录下并�
 | `/moma-review` | 对照文档与规约评审代码变更，输出分级问题 |
 | `/moma-check` | 只读检查文档与代码的双向漂移（防腐层） |
 | `/moma-release` | 聚合变更记录，产出发布说明、版本号与 tag |
+| `/moma-incident` | 事故应急：先止血、后定位、再修复防复发 |
+| `/moma-migrate` | 数据库迁移：可回滚、先备份、确认后执行 |
+| `/moma-security` | 六维度安全审查，输出分级问题与报告 |
+| `/moma-retro` | 项目/里程碑复盘，产出经验教训与改进行动 |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |

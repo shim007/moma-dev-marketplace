@@ -50,4 +50,7 @@
 | 评审记录 | `review-records/` | `/moma-review` | 02、03、06、07、代码变更 |
 | 检查报告 | `check-reports/` | `/moma-check` | 01~07、代码现状 |
 | 发布说明 | `releases/` | `/moma-release` | 08、09、提交历史 |
+| 事故记录 | `incident-records/` | `/moma-incident` | 事故现象、日志、近期变更 |
+| 安全报告 | `security-reports/` | `/moma-security` | 代码、依赖、配置、07 安全清单 |
+| 复盘报告 | `retro-reports/` | `/moma-retro` | session-records、08、09、releases |
 | 会话归档 | `session-records/` | `/moma-session-complete` | 会话历史 |

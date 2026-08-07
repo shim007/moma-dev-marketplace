@@ -21,6 +21,10 @@ AI 驱动的简化软件开发流程管控插件，通过标准化的文档体�
 | `/moma-review` | 对照文档与规约评审代码变更，输出分级问题 |
 | `/moma-check` | 只读检查文档与代码的双向漂移（防腐层） |
 | `/moma-release` | 聚合变更记录，产出发布说明、版本号与 tag |
+| `/moma-incident` | 事故应急：先止血、后定位、再修复防复发 |
+| `/moma-migrate` | 数据库迁移：可回滚、先备份、确认后执行 |
+| `/moma-security` | 六维度安全审查，输出分级问题与报告 |
+| `/moma-retro` | 项目/里程碑复盘，产出经验教训与改进行动 |
 | `/moma-session-complete` | 总结当前会话流程并归档为 md 文档 |
 
 另有一个总览技能 `moma-soft-dev`，用于介绍整体流程与共享约定，不执行具体工作。
@@ -113,7 +117,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 ## moma-soft-dev 工作指令
 
 当用户消息以下列任一指令开头时，执行对应的 moma-soft-dev 技能：
-/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-session-complete
+/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete
 
 执行规则：
 
@@ -150,6 +154,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 
 - **防腐层：** 开发过程中定期执行 `/moma-check`（只读、可与其他指令并行），检测文档与代码的双向漂移，防止文档腐烂导致约束失效。
 - **缺陷状态闭环：** `/moma-fix` 修复后置为"已修复"，`/moma-test` 回归通过后流转为"已验证"（状态流转规则见共享约定规则4）。
+- **扩展保障：** 低频高风险场景由专门指令承接——事故应急 `/moma-incident`、数据库迁移 `/moma-migrate`、安全审查 `/moma-security`、项目复盘 `/moma-retro`。
 
 ## 多会话并行（多 agent 同目录协作）
 
@@ -166,7 +171,7 @@ Codex 等遵循 `AGENTS.md` 标准但没有插件 marketplace 的工具，采用
 
 ## 验证安装
 
-- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 12 个工作指令的自动补全。
+- **Claude Code / Copilot CLI**：执行 `/plugin` 打开插件管理界面，确认 `moma-soft-dev` 已安装并启用；输入 `/moma-` 应看到 16 个工作指令的自动补全。
 - **通用安装法**：向 AI 发送 `/moma-init 我想做一个待办事项应用`，确认其能读取 `.moma/templates/simple-software/` 下的模板并开始生成文档。
 
 ## 升级 / 卸载
@@ -212,6 +217,10 @@ plugins/moma-soft-dev/
     ├── moma-review/SKILL.md
     ├── moma-check/SKILL.md
     ├── moma-release/SKILL.md
+    ├── moma-incident/SKILL.md
+    ├── moma-migrate/SKILL.md
+    ├── moma-security/SKILL.md
+    ├── moma-retro/SKILL.md
     └── moma-session-complete/SKILL.md
 ```
 

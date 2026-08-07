@@ -2,7 +2,7 @@
 
 本文件是本仓库面向所有 AI 编码助手（Claude Code、Codex CLI、Cursor、GitHub Copilot CLI、Gemini CLI 等）的**通用开发约定**，是项目规范的单一事实来源。Claude Code 专属补充见 `CLAUDE.md`。
 
-本仓库是 **moma-dev-marketplace** —— MoMa Soft 的 AI 插件市场（Marketplace），用于发布 moma 系列插件。当前发布的插件为 `moma-soft-dev`（文档驱动的软件开发流程管控，含 13 个技能：12 个工作指令 + 1 个总览）。
+本仓库是 **moma-dev-marketplace** —— MoMa Soft 的 AI 插件市场（Marketplace），用于发布 moma 系列插件。当前发布的插件为 `moma-soft-dev`（文档驱动的软件开发流程管控，含 17 个技能：16 个工作指令 + 1 个总览）。
 
 ## 仓库结构
 
@@ -42,7 +42,7 @@
 
 1. `/plugin marketplace add <本仓库根目录绝对路径>`（已添加则 `/plugin marketplace update moma-dev-marketplace`）
 2. `/plugin install moma-soft-dev@moma-dev-marketplace`（或 `/plugin update moma-soft-dev`）
-3. 重启会话，确认输入 `/moma-` 时 12 个工作指令全部出现在自动补全中
+3. 重启会话，确认输入 `/moma-` 时 16 个工作指令全部出现在自动补全中
 4. 用 `plugins/moma-soft-dev/skills/moma-soft-dev/evals/evals.json` 中的 prompt 至少抽查 1 个场景（如 `/moma-init`），确认模板能从 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/` 正常读取
 
 ## 写作约定

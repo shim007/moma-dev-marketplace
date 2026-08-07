@@ -1,6 +1,6 @@
 ---
 name: moma-soft-dev
-description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束、验证阶梯、文档预检规则）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-session-complete。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
+description: 'AI 驱动的简化软件开发流程管控总览技能，集中维护 moma-* 系列子技能的共享约定（文档存放规则、文档体系、编码通用约束、验证阶梯、文档预检规则）。 当用户询问 moma-soft-dev 流程的总体设计、文档体系、阶段划分，或不确定该用哪个 /moma-* 指令时使用本技能。 每个具体的工作指令由独立的子技能处理：/moma-init、/moma-sync、/moma-coding、/moma-modify、/moma-optimize、/moma-new、/moma-fix、/moma-test、/moma-review、/moma-check、/moma-release、/moma-incident、/moma-migrate、/moma-security、/moma-retro、/moma-session-complete。 这些子技能均位于 skills/moma-* 目录下，并共享 skills/moma-soft-dev/references/common-conventions.md 中定义的约定。'
 ---
 
 # moma-soft-dev：AI 驱动的简化软件开发流程（总览）
@@ -28,6 +28,10 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 | `/moma-review` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-review/` | 对照文档与规约评审代码变更 |
 | `/moma-check` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-check/` | 只读检查文档与代码的双向漂移 |
 | `/moma-release` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-release/` | 聚合变更记录，产出发布说明与 tag |
+| `/moma-incident` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-incident/` | 事故应急：先止血、后定位、再修复 |
+| `/moma-migrate` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-migrate/` | 数据库迁移：可回滚、先备份、确认执行 |
+| `/moma-security` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-security/` | 六维度安全审查，输出分级问题 |
+| `/moma-retro` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-retro/` | 项目/里程碑复盘与改进行动 |
 | `/moma-session-complete` | `${CLAUDE_PLUGIN_ROOT}/skills/moma-session-complete/` | 总结当前会话流程并归档 md 文档 |
 
 ## 共享约定
@@ -69,12 +73,23 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 - **防腐层：** 开发过程中建议定期执行 `/moma-check`（只读、可并行），检测文档与代码的双向漂移，防止文档腐烂导致约束失效。
 - **缺陷状态闭环：** `/moma-fix` 修复后将 BUG 置为"已修复"，`/moma-test` 回归通过后按共享约定规则4的"状态流转例外"流转为"已验证"。
 
+## 扩展保障（低频但关键）
+
+主流程之外，四类低频但高风险的场景由专门指令承接：
+
+| 场景 | 指令 | 核心纪律 |
+|------|------|----------|
+| 生产事故 | `/moma-incident` | 先止血（回滚/降级）后定位，止血操作需用户确认，事后补齐流程登记 |
+| 数据模型高危变更 | `/moma-migrate` | 脚本必可回滚、执行前必备份、物理删除必明确确认；变更类指令发现需迁移时应路由到此 |
+| 安全审查 | `/moma-security` | 六维度只读审查（注入/认证/敏感信息/依赖/配置/数据保护），严重问题建议立即修复 |
+| 里程碑/项目复盘 | `/moma-retro` | 聚合过程数据产出经验教训，每条改进行动必须标注承接指令 |
+
 ## 多会话并行
 
 moma-* 工作指令支持多个 AI 会话（agent）在同一工作目录并行工作，核心规则六条：
 
 1. **会话登记** —— 每个会话在花名册 `<docs-root>/.moma-state/roster.md` 中登记会话 ID、指令、工作范围与状态；
-2. **代码并行** —— 涉及代码修改的指令声明工作范围，范围重叠时后到者拒绝执行，避免互相覆盖；`/moma-check`、`/moma-review` 为只读指令，不参与范围冲突；
+2. **代码并行** —— 涉及代码修改的指令声明工作范围，范围重叠时后到者拒绝执行，避免互相覆盖；`/moma-check`、`/moma-review`、`/moma-security`、`/moma-retro` 为只读指令，不参与范围冲突；`/moma-incident` 应急时可经用户确认优先执行；
 3. **文档单写者** —— 01~07 文档同一时刻只允许一个会话写入；`/moma-init`、`/moma-sync` 为独占指令；
 4. **追加式写入** —— 08-变更日志与 09-BUG记录只允许追加含会话 ID 的条目（仅状态字段可按"状态流转例外"受控更新），写入前后重读验证；
 5. **git 兜底** —— 写入前打检查点提交，完成后只提交本会话范围内的文件，保证冲突可回滚、提交不互相污染；
