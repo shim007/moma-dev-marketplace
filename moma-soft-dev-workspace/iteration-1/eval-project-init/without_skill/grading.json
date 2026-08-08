@@ -1,14 +1,14 @@
 {
   "expectations": [
     {
-      "text": "生成了 docs/01-项目概要.md 文件",
+      "text": "生成了 dev-docs/01-项目概要.md 文件",
       "passed": true,
-      "evidence": "File exists at outputs/01-项目概要.md (note: not in docs/ subfolder)"
+      "evidence": "File exists at outputs/01-项目概要.md (note: not in dev-docs/ subfolder)"
     },
     {
-      "text": "生成了 docs/02-产品需求文档.md 文件",
+      "text": "生成了 dev-docs/02-产品需求文档.md 文件",
       "passed": true,
-      "evidence": "File exists at outputs/02-产品需求文档.md (not in docs/ subfolder)"
+      "evidence": "File exists at outputs/02-产品需求文档.md (not in dev-docs/ subfolder)"
     },
     {
       "text": "生成了至少7份文档（01到07）",

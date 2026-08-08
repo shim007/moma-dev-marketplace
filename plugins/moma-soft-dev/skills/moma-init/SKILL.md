@@ -7,7 +7,7 @@ description: 'moma-soft-dev 子技能 —— 项目启动。当用户消息以 /
 
 从用户需求出发，按阶段生成完整文档体系，为编码做准备。
 
-> 共享约定（文档存放规则 `dev-docs/` 优先于 `docs/`、文档体系、编码通用约束等）见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，本文件中出现的 `docs/` 路径均遵循该约定。
+> 共享约定（文档存于 `dev-docs/`、文档体系、编码通用约束等）见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，本文件中出现的 `dev-docs/` 路径均遵循该约定。
 
 ## 上下文范围
 
@@ -22,19 +22,19 @@ description: 'moma-soft-dev 子技能 —— 项目启动。当用户消息以 /
 2. **阶段1 — 需求定义**
    - 总结用户需求意图，详细拆分，补充用户未考虑到的需求细节。
    - **关键歧义先确认：** 若需求存在影响架构走向的关键缺失或矛盾（核心业务规则不明、技术栈倾向冲突、目标用户或部署形态不清），先向用户提问确认，再生成文档；非关键细节可合理补充并在文档中注明"AI 补充，待确认"。
-   - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/01-项目概要.md` 模板，生成 `docs/01-项目概要.md`。
-   - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/02-产品需求文档.md` 模板，生成 `docs/02-产品需求文档.md`。
+   - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/01-项目概要.md` 模板，生成 `dev-docs/01-项目概要.md`。
+   - 读取 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/02-产品需求文档.md` 模板，生成 `dev-docs/02-产品需求文档.md`。
 
 3. **阶段2 — 技术设计**
    - 基于阶段1文档和用户技术倾向，读取模板并生成：
-     - `docs/03-技术架构文档.md`
-     - `docs/04-数据模型文档.md`
-     - `docs/05-API接口文档.md`
+     - `dev-docs/03-技术架构文档.md`
+     - `dev-docs/04-数据模型文档.md`
+     - `dev-docs/05-API接口文档.md`
 
 4. **阶段3 — 开发约束**
    - 读取模板并生成：
-     - `docs/06-开发规约.md`
-     - `docs/07-测试策略.md`
+     - `dev-docs/06-开发规约.md`
+     - `dev-docs/07-测试策略.md`
 
 5. **完成后提示用户**
    - 请用户审核所有文档内容。

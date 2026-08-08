@@ -7,11 +7,11 @@ description: 'moma-soft-dev 子技能 —— 文档一致性检查。当用户�
 
 文档驱动模式的"防腐层"：定期检测文档与代码的双向漂移，防止文档腐烂导致约束失效。
 
-> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `docs/` 路径均遵循共享约定的 `dev-docs/` 优先规则。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `dev-docs/` 路径均遵循共享约定的文档存放规则。
 
 ## 上下文范围
 
-加载 `docs/` 下 01~07 全套文档 + 项目源码结构、依赖清单、数据模型定义（ORM 模型、迁移文件、建表脚本）与接口定义（路由、控制器签名）。不加载插件内置模板，不加载会话历史。
+加载 `dev-docs/` 下 01~07 全套文档 + 项目源码结构、依赖清单、数据模型定义（ORM 模型、迁移文件、建表脚本）与接口定义（路由、控制器签名）。不加载插件内置模板，不加载会话历史。
 
 ## 步骤
 

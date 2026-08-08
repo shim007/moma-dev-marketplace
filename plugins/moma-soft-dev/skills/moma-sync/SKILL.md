@@ -7,13 +7,13 @@ description: 'moma-soft-dev 子技能 —— 项目同步 / 需求同步。当�
 
 针对已有代码的项目，通过分析现有代码反向补全或生成文档体系。
 
-> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，本文件中 `docs/` 路径均遵循 `dev-docs/` 优先规则。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`，本文件中 `dev-docs/` 路径均遵循文档存放规则。
 >
 > **与 `/moma-check` 的分工：** 本指令是独占的重量级操作，用于文档缺失或大面积落后时的整体补全；日常的轻量一致性检查（只读、不写文档、可与其他会话并行）请使用 `/moma-check`。
 
 ## 上下文范围
 
-加载当前工作目录下的项目文件（源码、配置、构建脚本等）+ 插件内置模板目录 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/` 下的模板（01~07）+ 已存在的 `dev-docs/` 或 `docs/` 文档（如有）。不加载变更日志（此时通常无意义）。
+加载当前工作目录下的项目文件（源码、配置、构建脚本等）+ 插件内置模板目录 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/` 下的模板（01~07）+ 已存在的 `dev-docs/` 或 `dev-docs/` 文档（如有）。不加载变更日志（此时通常无意义）。
 
 ## 步骤
 

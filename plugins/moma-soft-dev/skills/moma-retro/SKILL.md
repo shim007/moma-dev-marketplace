@@ -7,11 +7,11 @@ description: 'moma-soft-dev 子技能 —— 项目复盘。当用户消息以 /
 
 里程碑或项目级复盘：聚合过程数据、提炼经验教训、产出可落地的改进项。与会话级的 `/moma-session-complete` 互补——后者记录单次会话，本指令跨越多个会话与版本做全局回顾。
 
-> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `docs/` 路径均遵循共享约定的 `dev-docs/` 优先规则。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `dev-docs/` 路径均遵循共享约定的文档存放规则。
 
 ## 上下文范围
 
-加载复盘范围内的 `<docs-root>/session-records/` 会话归档 + `docs/08-变更日志.md` + `docs/09-BUG记录.md` + `<docs-root>/releases/` 发布记录 + `docs/01-项目概要.md`（初始目标对照）+ git 统计（提交数与时间线）。不加载插件内置模板与业务代码。
+加载复盘范围内的 `<docs-root>/session-records/` 会话归档 + `dev-docs/08-变更日志.md` + `dev-docs/09-BUG记录.md` + `<docs-root>/releases/` 发布记录 + `dev-docs/01-项目概要.md`（初始目标对照）+ git 统计（提交数与时间线）。不加载插件内置模板与业务代码。
 
 ## 步骤
 
@@ -28,7 +28,7 @@ description: 'moma-soft-dev 子技能 —— 项目复盘。当用户消息以 /
    - **目标达成对照**：以 01-项目概要的初始目标为基准，逐项标注已达成/部分达成/未达成及原因；
    - **经验与教训**：每条教训按"问题 → 原因 → 教训"结构书写，避免空泛总结；
    - **改进行动**：每条必须可落地，并标注承接指令——流程规范类 → `/moma-modify` 更新 06-开发规约；测试缺口 → `/moma-test`；遗留缺陷 → `/moma-fix`；架构风险 → `/moma-optimize`；文档漂移 → `/moma-check`。
-5. **登记**：按追加式写入规则在 `docs/08-变更日志.md` 追加一条 CR 条目（变更类型"项目复盘"，引用复盘报告文件，条目含会话 ID；文件不存在则创建）。
+5. **登记**：按追加式写入规则在 `dev-docs/08-变更日志.md` 追加一条 CR 条目（变更类型"项目复盘"，引用复盘报告文件，条目含会话 ID；文件不存在则创建）。
 6. **收尾**：将花名册中本会话状态改为"已完成"；向用户呈现优先级最高的前 3 项改进行动，并建议立即执行对应指令。
 
 ## 复盘报告模板

@@ -7,11 +7,11 @@ description: 'moma-soft-dev 子技能 —— 版本发布。当用户消息以 /
 
 聚合变更记录，产出一个可发布的版本：发布说明 + 版本号 + release 提交 + tag。
 
-> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `docs/` 路径均遵循共享约定的 `dev-docs/` 优先规则。
+> 共享约定见 `${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`。本文件中 `dev-docs/` 路径均遵循共享约定的文档存放规则。
 
 ## 上下文范围
 
-加载 `docs/08-变更日志.md` + `docs/09-BUG记录.md` + git 提交历史（自上一个 tag 起）+ 项目版本号载体文件（如 `package.json`、`pyproject.toml`、`pom.xml`、`version.py` 等）。不加载插件内置模板，不加载与版本无关的文档章节。
+加载 `dev-docs/08-变更日志.md` + `dev-docs/09-BUG记录.md` + git 提交历史（自上一个 tag 起）+ 项目版本号载体文件（如 `package.json`、`pyproject.toml`、`pom.xml`、`version.py` 等）。不加载插件内置模板，不加载与版本无关的文档章节。
 
 ## 步骤
 
@@ -30,7 +30,7 @@ description: 'moma-soft-dev 子技能 —— 版本发布。当用户消息以 /
 5. **生成发布说明**：在 `<docs-root>/releases/`（不存在则创建）新建 `vX.Y.Z-发布说明.md`，使用文末模板。
    > 设计说明：发布说明不写入 `08-变更日志.md` 的"版本发布记录"章节——那会违反规则4的追加式写入约定；08 中仅以步骤7的追加条目作为发布标记并指向本文件。
 6. **更新版本号**：按技术栈更新工程版本号载体文件（如 `package.json` 的 `version` 字段）。**不修改 01~07 文档**（保持文档单写者语义）；若 01 中有版本号字段，提醒用户后续通过 `/moma-modify` 同步。
-7. **登记发布标记**：按追加式写入规则在 `docs/08-变更日志.md` 末尾追加一条 CR 条目（编号取当前最大编号加 1，条目含会话 ID）：变更类型"版本发布"，内容为"发布 vX.Y.Z，发布说明见 releases/vX.Y.Z-发布说明.md"。
+7. **登记发布标记**：按追加式写入规则在 `dev-docs/08-变更日志.md` 末尾追加一条 CR 条目（编号取当前最大编号加 1，条目含会话 ID）：变更类型"版本发布"，内容为"发布 vX.Y.Z，发布说明见 releases/vX.Y.Z-发布说明.md"。
 8. **提交与 tag**：
    - 生成 `release: vX.Y.Z` 格式的提交：只暂存本会话工作范围内的文件，提交信息携带会话 ID；
    - 创建 tag `vX.Y.Z`（tag 说明摘录发布亮点）。**tag 操作不可撤销，必须先获得用户明确确认**；用户可拒绝打 tag，仅保留提交。

@@ -10,7 +10,7 @@
     },
     {
       "id": "a2-2",
-      "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+      "text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
       "type": "content_check"
     },
     {

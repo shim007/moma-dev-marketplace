@@ -1,6 +1,6 @@
 ---
 name: moma-session-complete
-description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /moma-session-complete 开头时使用本技能， 将当前会话的全过程进行结构化总结，并保存为 markdown 文档归档到与项目过程文档同根目录的 session-records/ 子目录下 （优先 dev-docs/session-records/，其次 docs/session-records/）。本指令不修改业务代码与 01~07 文档。'
+description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /moma-session-complete 开头时使用本技能， 将当前会话的全过程进行结构化总结，并保存为 markdown 文档归档到与项目过程文档同根目录的 session-records/ 子目录下（即 dev-docs/session-records/）。本指令不修改业务代码与 01~07 文档。'
 ---
 
 # /moma-session-complete —— 会话归档
@@ -19,9 +19,7 @@ description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /
    - 读取 `<docs-root>/.moma-state/roster.md`，定位本会话条目（如有），获取会话 ID；归档文件与后续登记均使用该会话 ID。
 
 1. **确定输出路径**
-   - 目标目录：与项目过程文档保持同一根目录，遵循"优先 `dev-docs/`，其次 `docs/`"的查找/创建规则。即：
-     - 若已存在 `dev-docs/`，则归档到 `dev-docs/session-records/`（不存在则创建子目录）；
-     - 否则归档到 `docs/session-records/`（不存在则创建）。
+   - 目标目录：与项目过程文档保持同一根目录，即 `dev-docs/session-records/`（不存在则创建）。
    - 文件命名：`session-YYYYMMDD-HHmm-<简短主题>.md`，其中时间使用当前时间，`<简短主题>` 使用本次会话的核心主题（kebab-case，英文或拼音）。
 
 2. **总结会话内容**
@@ -32,7 +30,7 @@ description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /
 
    - **会话时间：** {{开始时间}} ~ {{结束时间}}
    - **触发指令：** {{本次会话涉及的 /moma-* 指令列表}}
-   - **关联文档：** {{涉及的 docs/ 文档清单}}
+   - **关联文档：** {{涉及的 dev-docs/ 文档清单}}
 
    ## 1. 用户诉求
    简要复述用户在本次会话中提出的核心需求与背景。
@@ -47,7 +45,7 @@ description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /
    - **新增文件：** {{路径列表}}
    - **修改文件：** {{路径列表}}
    - **删除文件：** {{路径列表}}
-   - **生成/更新的文档：** {{docs/ 下文件列表}}
+   - **生成/更新的文档：** {{dev-docs/ 下文件列表}}
    - **代码变更摘要：** {{每项变更一行简述}}
 
    ## 5. 遗留事项
@@ -58,11 +56,11 @@ description: 'moma-soft-dev 子技能 —— 会话归档。当用户消息以 /
    ```
 
 3. **写入文件**
-   - 将上述内容写入上一步确定的目录下的 `session-YYYYMMDD-HHmm-<简短主题>.md`（即 `dev-docs/session-records/...` 或 `docs/session-records/...`）。
+   - 将上述内容写入上一步确定的目录下的 `session-YYYYMMDD-HHmm-<简短主题>.md`（即 `dev-docs/session-records/...`）。
    - 写入完成后，向用户输出文件路径，确认归档成功。
 
 4. **可选：登记到变更日志**
-   - 如果本次会话对项目代码或 01~07 文档有实质性变更，且 `docs/08-变更日志.md` 存在，则按追加式写入规则在变更日志末尾追加一条指向本次会话记录的引用（条目含会话 ID）。
+   - 如果本次会话对项目代码或 01~07 文档有实质性变更，且 `dev-docs/08-变更日志.md` 存在，则按追加式写入规则在变更日志末尾追加一条指向本次会话记录的引用（条目含会话 ID）。
 
 5. **注销花名册**
    - 将花名册中本会话条目状态改为"已完成"（保留条目，便于追溯）。

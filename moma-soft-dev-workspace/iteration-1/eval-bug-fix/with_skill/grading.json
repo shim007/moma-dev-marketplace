@@ -6,9 +6,9 @@
       "evidence": "summary.md provides detailed root cause: 'OrderService.submitOrder() 直接对 request.getDeliveryAddress() 调用 .trim()，未做空值校验' with full impact chain"
     },
     {
-      "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+      "text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
       "passed": true,
-      "evidence": "docs/09-BUG记录.md exists with BUG-001 following the 6.2 template format including: 级别(严重), 发现场景, 复现步骤(3 steps), 预期结果, 实际结果, 修复方案, 状态(已修复)"
+      "evidence": "dev-docs/09-BUG记录.md exists with BUG-001 following the 6.2 template format including: 级别(严重), 发现场景, 复现步骤(3 steps), 预期结果, 实际结果, 修复方案, 状态(已修复)"
     },
     {
       "text": "提交信息以 bug: 开头",

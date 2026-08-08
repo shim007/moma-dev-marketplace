@@ -1,14 +1,14 @@
 {
   "expectations": [
     {
-      "text": "生成了 docs/01-项目概要.md 文件",
+      "text": "生成了 dev-docs/01-项目概要.md 文件",
       "passed": true,
-      "evidence": "File exists at outputs/docs/01-项目概要.md"
+      "evidence": "File exists at outputs/dev-docs/01-项目概要.md"
     },
     {
-      "text": "生成了 docs/02-产品需求文档.md 文件",
+      "text": "生成了 dev-docs/02-产品需求文档.md 文件",
       "passed": true,
-      "evidence": "File exists at outputs/docs/02-产品需求文档.md"
+      "evidence": "File exists at outputs/dev-docs/02-产品需求文档.md"
     },
     {
       "text": "生成了至少7份文档（01到07）",

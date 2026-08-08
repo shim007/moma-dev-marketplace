@@ -4,17 +4,18 @@
 
 ## 文档存放规则
 
-项目文档默认存放在工作目录的 `dev-docs/` 文件夹中，其次是 `docs/`。
+项目文档统一存放在工作目录的 `dev-docs/` 文件夹中（不存在则创建该目录）；本文及各技能中提到的 `<docs-root>` 均指该目录。
 
-- **查找文档：** 优先在 `dev-docs/` 下查找，找不到再在 `docs/` 下查找。
-- **创建/更新文档：** 优先写入 `dev-docs/`（不存在则创建该目录）；只有当当前项目仅存在 `docs/` 而无 `dev-docs/` 时，才继续使用 `docs/`。
-- **会话归档目录：** `<docs-root>/session-records/`，与上面的 `<docs-root>` 保持一致。
+- **查找文档：** 在 `dev-docs/` 下查找。
+- **创建/更新文档：** 写入 `dev-docs/`。
+- **会话归档目录：** `dev-docs/session-records/`。
+- **旧项目迁移：** 若项目文档仍位于旧版约定的 `docs/` 目录，先将其整体迁移至 `dev-docs/`，再执行 moma 指令。
 
 模板文件统一来自插件内置模板目录 `${CLAUDE_PLUGIN_ROOT}/templates/simple-software/`。
 
 > `${CLAUDE_PLUGIN_ROOT}` 在 Claude Code / GitHub Copilot CLI 中会自动解析为本插件的安装根目录；在其他 AI 工具中可能不会展开，此时请将其理解为"本插件所在目录的绝对路径"（即安装或手动拷贝 `moma-soft-dev` 插件目录的位置），再据此定位文件。
 
-> 各 `moma-*` skill 中出现的 `docs/` 路径均遵循上述查找/创建规则，实际优先使用 `dev-docs/`。
+> 各 `moma-*` skill 中出现的 `dev-docs/` 路径均指上述文档根目录。
 
 ## 文档体系与阶段
 

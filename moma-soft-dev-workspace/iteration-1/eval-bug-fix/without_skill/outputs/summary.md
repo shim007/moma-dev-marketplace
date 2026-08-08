@@ -46,7 +46,7 @@ order.setDeliveryAddress(address.trim());
 | ---- | ---- |
 | `code/OrderService_buggy.java` | 修复前的问题代码 |
 | `code/OrderService_fixed.java` | 修复后的代码 |
-| `docs/09-BUG记录.md` | 按缺陷记录模板记录的 BUG 详情 |
+| `dev-docs/09-BUG记录.md` | 按缺陷记录模板记录的 BUG 详情 |
 
 ---
 

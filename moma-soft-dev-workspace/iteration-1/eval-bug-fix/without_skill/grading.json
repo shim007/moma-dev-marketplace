@@ -6,9 +6,9 @@
       "evidence": "Agent report provides root cause: 'OrderService.submitOrder() calls request.getDeliveryAddress().trim() without null check'"
     },
     {
-      "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+      "text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
       "passed": true,
-      "evidence": "Agent report confirms docs/09-BUG记录.md was created with formal bug record"
+      "evidence": "Agent report confirms dev-docs/09-BUG记录.md was created with formal bug record"
     },
     {
       "text": "提交信息以 bug: 开头",

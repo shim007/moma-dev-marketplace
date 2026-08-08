@@ -41,7 +41,7 @@ description: 'AI 驱动的简化软件开发流程管控总览技能，集中维
 
 所有 `moma-*` 子技能都遵循以下共享约定，集中维护在：
 
-- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`** —— 文档存放规则（`dev-docs/` 优先于 `docs/`）、文档体系与阶段、编码通用约束（含验证阶梯）、文档预检规则、上下文精简原则、多会话并行规约
+- **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/common-conventions.md`** —— 文档存放规则（`dev-docs/`）、文档体系与阶段、编码通用约束（含验证阶梯）、文档预检规则、上下文精简原则、多会话并行规约
 - **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/doc-dependencies.md`** —— 文档间依赖关系图与派生产物清单
 - **`${CLAUDE_PLUGIN_ROOT}/skills/moma-soft-dev/references/change-workflow.md`** —— `/moma-modify`、`/moma-optimize`、`/moma-new` 共用的变更流程（登记→文档同步→代码变更→变更日志→提交）
 

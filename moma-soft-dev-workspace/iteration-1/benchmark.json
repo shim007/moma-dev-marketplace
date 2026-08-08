@@ -23,8 +23,8 @@
         "errors": 0
       },
       "expectations": [
-        {"text": "生成了 docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists"},
-        {"text": "生成了 docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了 dev-docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了 dev-docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
         {"text": "生成了至少7份文档（01到07）", "passed": true, "evidence": "7 docs found"},
         {"text": "文档中包含用户提到的技术栈（React、Spring Boot）", "passed": true, "evidence": "Multiple mentions across docs"},
         {"text": "输出中包含提示用户审核和发送 [开始编码] 的建议", "passed": true, "evidence": "Found in summary.md"}
@@ -46,8 +46,8 @@
         "errors": 0
       },
       "expectations": [
-        {"text": "生成了 docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists (different path)"},
-        {"text": "生成了 docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
+        {"text": "生成了 dev-docs/01-项目概要.md 文件", "passed": true, "evidence": "File exists (different path)"},
+        {"text": "生成了 dev-docs/02-产品需求文档.md 文件", "passed": true, "evidence": "File exists"},
         {"text": "生成了至少7份文档（01到07）", "passed": true, "evidence": "8 docs including 08"},
         {"text": "文档中包含用户提到的技术栈（React、Spring Boot）", "passed": true, "evidence": "Mentioned throughout"},
         {"text": "输出中包含提示用户审核和发送 [开始编码] 的建议", "passed": false, "evidence": "No [开始编码] prompt"}
@@ -69,8 +69,8 @@
         "errors": 0
       },
       "expectations": [
-        {"text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "Detailed updates in summary"},
-        {"text": "在 docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "CR-001 recorded"},
+        {"text": "更新了 dev-docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "Detailed updates in summary"},
+        {"text": "在 dev-docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "CR-001 recorded"},
         {"text": "提交信息以 feat: 开头", "passed": true, "evidence": "feat: 新增拼团购买功能模块"}
       ]
     },
@@ -90,8 +90,8 @@
         "errors": 0
       },
       "expectations": [
-        {"text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "PRD created"},
-        {"text": "在 docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "Change log created"},
+        {"text": "更新了 dev-docs/02-产品需求文档.md 加入拼团相关需求", "passed": true, "evidence": "PRD created"},
+        {"text": "在 dev-docs/08-变更日志.md 中记录了本次新增", "passed": true, "evidence": "Change log created"},
         {"text": "提交信息以 feat: 开头", "passed": false, "evidence": "No feat: prefix convention"}
       ]
     },
@@ -112,7 +112,7 @@
       },
       "expectations": [
         {"text": "输出了问题原因分析", "passed": true, "evidence": "Detailed root cause in summary"},
-        {"text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "BUG-001 with full 6.2 template"},
+        {"text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "BUG-001 with full 6.2 template"},
         {"text": "提交信息以 bug: 开头", "passed": true, "evidence": "bug: 修复...NullPointerException"}
       ]
     },
@@ -133,7 +133,7 @@
       },
       "expectations": [
         {"text": "输出了问题原因分析", "passed": true, "evidence": "Root cause provided"},
-        {"text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "Bug record created"},
+        {"text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug", "passed": true, "evidence": "Bug record created"},
         {"text": "提交信息以 bug: 开头", "passed": true, "evidence": "bug: prefix used"}
       ]
     }

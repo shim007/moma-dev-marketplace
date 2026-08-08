@@ -4,17 +4,17 @@
     {
       "id": 0,
       "prompt": "/moma-init 我想做一个校园二手交易平台，支持学生发布闲置物品、在线聊天议价、校内自提，需要用户认证学生身份，技术栈倾向用 React + Spring Boot",
-      "expected_output": "生成 docs/ 目录下的 01~07 共7份项目文档，每份文档基于插件内置模板（templates/simple-software/）填充，包含完整的需求拆分、技术架构、数据模型、API设计、开发规约和测试策略。最后提示用户审核并建议发送 /moma-coding。",
+      "expected_output": "生成 dev-docs/ 目录下的 01~07 共7份项目文档，每份文档基于插件内置模板（templates/simple-software/）填充，包含完整的需求拆分、技术架构、数据模型、API设计、开发规约和测试策略。最后提示用户审核并建议发送 /moma-coding。",
       "files": [],
       "assertions": [
         {
           "id": "a0-1",
-          "text": "生成了 docs/01-项目概要.md 文件",
+          "text": "生成了 dev-docs/01-项目概要.md 文件",
           "type": "file_exists"
         },
         {
           "id": "a0-2",
-          "text": "生成了 docs/02-产品需求文档.md 文件",
+          "text": "生成了 dev-docs/02-产品需求文档.md 文件",
           "type": "file_exists"
         },
         {
@@ -37,17 +37,17 @@
     {
       "id": 1,
       "prompt": "/moma-new 在现有的交易平台基础上增加一个“拼团购买”功能，允许多个用户一起拼团购买同一商品以获得折扣价",
-      "expected_output": "分析新增功能归属模块，更新 docs/01 和 02 文档加入拼团功能需求，同步更新下游文档（数据模型、API、测试等），在变更日志中记录变更，并生成以 feat 为标识的提交信息。",
+      "expected_output": "分析新增功能归属模块，更新 dev-docs/01 和 02 文档加入拼团功能需求，同步更新下游文档（数据模型、API、测试等），在变更日志中记录变更，并生成以 feat 为标识的提交信息。",
       "files": [],
       "assertions": [
         {
           "id": "a1-1",
-          "text": "更新了 docs/02-产品需求文档.md 加入拼团相关需求",
+          "text": "更新了 dev-docs/02-产品需求文档.md 加入拼团相关需求",
           "type": "content_check"
         },
         {
           "id": "a1-2",
-          "text": "在 docs/08-变更日志.md 中记录了本次新增",
+          "text": "在 dev-docs/08-变更日志.md 中记录了本次新增",
           "type": "content_check"
         },
         {
@@ -60,7 +60,7 @@
     {
       "id": 2,
       "prompt": "/moma-fix 用户反馈在提交订单的时候页面一直转圈，控制台报 500 错误，看了下后端日志是 NullPointerException，好像跟地址字段有关",
-      "expected_output": "分析异常原因（地址字段空指针），定位相关代码，制定修复计划，修复后输出问题原因说明，按照缺陷记录模板将 bug 记录到 docs/09-BUG记录.md（状态置为已修复），并生成以 bug 为标识的提交信息。",
+      "expected_output": "分析异常原因（地址字段空指针），定位相关代码，制定修复计划，修复后输出问题原因说明，按照缺陷记录模板将 bug 记录到 dev-docs/09-BUG记录.md（状态置为已修复），并生成以 bug 为标识的提交信息。",
       "files": [],
       "assertions": [
         {
@@ -70,7 +70,7 @@
         },
         {
           "id": "a2-2",
-          "text": "在 docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
+          "text": "在 dev-docs/09-BUG记录.md 中按缺陷记录模板记录了 bug",
           "type": "content_check"
         },
         {
@@ -88,7 +88,7 @@
     {
       "id": 3,
       "prompt": "/moma-optimize 细化“在线聊天议价”功能的行为边界：消息发出后超过 30 分钟未回复需自动提醒一次，聊天记录至少保留 90 天",
-      "expected_output": "按多会话并行规约执行：先生成会话 ID 并在花名册（docs 根目录下 .moma-state/roster.md）登记本会话的工作范围；写入 01~07 文档前先重新读取确认；以追加方式在 08-变更日志.md 记录变更且条目含会话 ID；提交只暂存本会话工作范围内的文件且提交信息含会话 ID；完成后将花名册状态改为已完成。",
+      "expected_output": "按多会话并行规约执行：先生成会话 ID 并在花名册（dev-docs 根目录下 .moma-state/roster.md）登记本会话的工作范围；写入 01~07 文档前先重新读取确认；以追加方式在 08-变更日志.md 记录变更且条目含会话 ID；提交只暂存本会话工作范围内的文件且提交信息含会话 ID；完成后将花名册状态改为已完成。",
       "files": [],
       "assertions": [
         {
@@ -139,7 +139,7 @@
       "assertions": [
         {
           "id": "a5-1",
-          "text": "生成了 01~07 全套文档（dev-docs/ 或 docs/ 下）",
+          "text": "生成了 01~07 全套文档（dev-docs/ 或 dev-docs/ 下）",
           "type": "count_check"
         },
         {
@@ -157,7 +157,7 @@
     {
       "id": 6,
       "prompt": "/moma-coding 帮我把登录功能实现一下",
-      "expected_output": "（场景设定：当前目录不存在 dev-docs/ 或 docs/，也没有 01/02 文档）按文档预检规则中止编码：明确告知缺少约束文档，不进入编码；根据项目现状路由——无代码则建议 /moma-init，已有代码则建议 /moma-sync。",
+      "expected_output": "（场景设定：当前目录不存在 dev-docs/ 或 dev-docs/，也没有 01/02 文档）按文档预检规则中止编码：明确告知缺少约束文档，不进入编码；根据项目现状路由——无代码则建议 /moma-init，已有代码则建议 /moma-sync。",
       "files": [],
       "assertions": [
         {

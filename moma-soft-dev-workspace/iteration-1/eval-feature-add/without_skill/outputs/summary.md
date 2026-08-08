@@ -8,10 +8,10 @@
 
 | 文件 | 说明 |
 |------|------|
-| `docs/02-产品需求文档.md` | 新增拼团购买功能模块的完整需求定义，包括用户故事、功能流程、验收条件、业务规则、界面需求 |
-| `docs/04-数据模型文档.md` | 新增 3 张数据表设计（group_buy_activity、group_buy_team、group_buy_member），含完整字段定义、索引、ER图和迁移SQL |
-| `docs/05-API接口文档.md` | 新增 9 个拼团相关 RESTful API 接口定义，含请求/响应示例和错误码 |
-| `docs/08-变更日志.md` | 记录 CR-001 变更条目及 V1.1 版本发布记录 |
+| `dev-docs/02-产品需求文档.md` | 新增拼团购买功能模块的完整需求定义，包括用户故事、功能流程、验收条件、业务规则、界面需求 |
+| `dev-docs/04-数据模型文档.md` | 新增 3 张数据表设计（group_buy_activity、group_buy_team、group_buy_member），含完整字段定义、索引、ER图和迁移SQL |
+| `dev-docs/05-API接口文档.md` | 新增 9 个拼团相关 RESTful API 接口定义，含请求/响应示例和错误码 |
+| `dev-docs/08-变更日志.md` | 记录 CR-001 变更条目及 V1.1 版本发布记录 |
 
 ## 功能要点
 

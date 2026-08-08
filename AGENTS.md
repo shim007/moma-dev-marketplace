@@ -25,7 +25,7 @@
    - `name` 必须与所在目录名一致；
    - `description` 写成单行 YAML 字符串（内容较长时用引号包成一行，不要折行）；
    - description 应说明触发时机（如"当用户消息以 /moma-init 开头时使用本技能"）。
-5. **共享约定单点维护**：moma-* 系列技能的共享约定集中在 `plugins/moma-soft-dev/skills/moma-soft-dev/references/common-conventions.md`（文档存放规则 `dev-docs/` 优先于 `docs/`、文档体系、编码通用约束、验证阶梯、文档预检规则、多会话并行规约）；`/moma-modify`、`/moma-optimize`、`/moma-new` 的共用变更流程集中在同目录 `change-workflow.md`。修改任何技能行为时，须同步检查并更新这些文件、总览技能 `moma-soft-dev/SKILL.md` 及 `evals/evals.json`。
+5. **共享约定单点维护**：moma-* 系列技能的共享约定集中在 `plugins/moma-soft-dev/skills/moma-soft-dev/references/common-conventions.md`（文档存放于 `dev-docs/`、文档体系、编码通用约束、验证阶梯、文档预检规则、多会话并行规约）；`/moma-modify`、`/moma-optimize`、`/moma-new` 的共用变更流程集中在同目录 `change-workflow.md`。修改任何技能行为时，须同步检查并更新这些文件、总览技能 `moma-soft-dev/SKILL.md` 及 `evals/evals.json`。
 6. **版本一致性**：调整插件内容后，必须同步更新以下三处 `version`（语义化版本），保持一致：
    - `plugins/moma-soft-dev/.claude-plugin/plugin.json`
    - `.claude-plugin/marketplace.json` 中对应插件条目
@@ -35,7 +35,7 @@
 ## 文档体系要点（moma-soft-dev 的业务背景）
 
 - 文档分阶段：**阶段1 需求定义**（01 项目概要、02 产品需求）→ **阶段2 技术设计**（03 架构、04 数据模型、05 API）→ **阶段3 开发约束**（06 开发规约、07 测试策略）→ **阶段4 AI 编码**；`08-变更日志` 贯穿全程，`09-BUG记录` 跟踪缺陷。
-- 生成的项目文档存放在用户项目的 `dev-docs/`（优先）或 `docs/` 下；模板来自插件内置的 `templates/simple-software/`。
+- 生成的项目文档存放在用户项目的 `dev-docs/` 下；模板来自插件内置的 `templates/simple-software/`。
 - 文档间依赖关系见 `plugins/moma-soft-dev/skills/moma-soft-dev/references/doc-dependencies.md`。
 
 ## 本地验证流程（Claude Code 环境）
